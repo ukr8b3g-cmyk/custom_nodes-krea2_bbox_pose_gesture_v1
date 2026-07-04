@@ -1,0 +1,4481 @@
+{
+  "version": "composable_best_plus_lower_sitting_v2",
+  "node_scope": "Krea2 BBOX optional human pose/gesture injector only. Not a general prompt manager.",
+  "ui_policy": {
+    "default_scope": "hand_expression",
+    "default_family": "Basic Sign / 基本サイン",
+    "default_action": "Any / 自動",
+    "default_target": "Any / 自動",
+    "default_preset": "Auto recommended",
+    "negative_prompt_supported": false,
+    "vision_or_text_encoder_assist": false,
+    "style_words_removed": true
+  },
+  "scopes": [
+    {
+      "id": "hand_expression",
+      "display_name": "Hand Expression / 手の表情",
+      "order": 10,
+      "description": "Hand and arm gestures; the default and most important scope."
+    },
+    {
+      "id": "upper_body",
+      "display_name": "Upper Body / 上半身",
+      "order": 20,
+      "description": "Arms, shoulders, chest, neck, and torso pose cues."
+    },
+    {
+      "id": "gaze",
+      "display_name": "Gaze / ??",
+      "order": 25,
+      "description": "Eye direction and gaze cues, separate from facial expression."
+    },
+    {
+      "id": "head",
+      "display_name": "Head / ????",
+      "order": 26,
+      "description": "Head and neck direction cues, not facial expression."
+    },
+    {
+      "id": "full_body",
+      "display_name": "Full Body / 全身",
+      "order": 30,
+      "description": "Standing and whole-body pose cues."
+    },
+    {
+      "id": "sitting_lying",
+      "display_name": "Sitting & Lying / 座り・寝そべり",
+      "order": 40,
+      "description": "Floor, chair, kneeling, crouching, and lying poses."
+    },
+    {
+      "id": "lower_body",
+      "display_name": "Lower Body / 下半身",
+      "order": 50,
+      "description": "Leg and foot placement cues."
+    },
+    {
+      "id": "performance",
+      "display_name": "Performance / 定型ポーズ",
+      "order": 60,
+      "description": "Genre-like poses such as hip-hop, dance, breakdance, Japanese manner, model, and battle."
+    },
+    {
+      "id": "pair",
+      "display_name": "Pair / 2人",
+      "order": 70,
+      "description": "Two-person pose relationships."
+    }
+  ],
+  "families": {
+    "hand_expression": [
+      "Any / 自動",
+      "Basic Sign / 基本サイン",
+      "Hand to Face / 顔まわりの手",
+      "Hand to Head / 頭まわりの手",
+      "Hand to Torso / 胴体まわりの手",
+      "Hand to Legs / 脚まわりの手",
+      "Communication / 伝える手",
+      "Cute Soft / かわいい・柔らかい手",
+      "Two Hands / 両手",
+      "Hand Seal / 印・結ぶ手"
+    ],
+    "upper_body": [
+      "Any / 自動",
+      "Arms / 腕",
+      "Torso / 胴体",
+      "Clothing / 服まわり",
+      "Relaxed / 自然"
+    ],
+    "full_body": [
+      "Any / 自動",
+      "Standing Basic / 基本立ち",
+      "Stylized Standing / 型のある立ち",
+      "Movement / 動き"
+    ],
+    "sitting_lying": [
+      "Any / 自動",
+      "Floor Sitting / 床座り",
+      "Chair Sitting / 椅子座り",
+      "Kneeling Crouching / 膝立ち・しゃがみ",
+      "Lying / 寝そべり"
+    ],
+    "lower_body": [
+      "Any / 自動",
+      "Standing Legs / 立ち脚",
+      "Foot Placement / 足先",
+      "Flexibility / ??"
+    ],
+    "performance": [
+      "Any / 自動",
+      "Hip-Hop / ヒップホップ",
+      "Dance / ダンス",
+      "Breakdance / ブレイクダンス",
+      "Japanese / 和風所作",
+      "Model / モデル立ち",
+      "Battle / 戦闘",
+      "Sports / ????",
+      "Flexibility / ??"
+    ],
+    "pair": [
+      "Any / 自動",
+      "Facing / 向かい合い",
+      "Connection / 接触",
+      "Composition / 構図"
+    ],
+    "gaze": [
+      "Any / ??",
+      "Direct / ??",
+      "Away / ??",
+      "Direction / ??",
+      "Focus / ??"
+    ],
+    "head": [
+      "Any / ??",
+      "Turn / ??",
+      "Tilt / ??",
+      "Chin / ?",
+      "Neck / ?"
+    ]
+  },
+  "actions": [
+    "Any / 自動",
+    "Gesture / サイン",
+    "Touch / 触れる",
+    "Cover / 隠す",
+    "Hold / 持つ・支える",
+    "Raise / 上げる",
+    "Rest / 置く",
+    "Point / 指す",
+    "Present / 見せる",
+    "Wrap / 抱える",
+    "Lean / もたれる",
+    "Turn / 振り向く",
+    "Move / 動く",
+    "Balance / バランス",
+    "Interact / 2人で関わる",
+    "Gaze / ??",
+    "Performance / ??"
+  ],
+  "targets": [
+    "Any / 自動",
+    "Face / 顔",
+    "Mouth / 口元",
+    "Eye / 目",
+    "Cheek / 頬",
+    "Chin / 顎",
+    "Hair / 髪",
+    "Head / 頭",
+    "Neck / 首",
+    "Chest / 胸元",
+    "Torso / 胴体",
+    "Waist / 腰",
+    "Hip / ヒップ",
+    "Arm / 腕",
+    "Hand / 手",
+    "Knee / 膝",
+    "Thigh / 太もも",
+    "Leg / 脚",
+    "Foot / 足",
+    "Whole Body / 全身",
+    "Ground / 床",
+    "Partner / 相手",
+    "Camera / カメラ方向",
+    "Object / 小物"
+  ],
+  "presets": [
+    {
+      "id": "peace_sign",
+      "display_name": "Peace Sign / ピース",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1,
+      "aliases": [
+        "peace sign",
+        "v sign",
+        "ピース"
+      ],
+      "prompt": "making a peace sign with the right hand near the face",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "ok_sign",
+      "display_name": "OK Sign / OKサイン",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 2,
+      "aliases": [
+        "ok sign",
+        "circle fingers",
+        "OKサイン"
+      ],
+      "prompt": "making an OK sign with the right hand, thumb and index finger forming a circle",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "thumbs_up",
+      "display_name": "Thumbs Up / 親指立て",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 3,
+      "aliases": [
+        "thumbs up",
+        "good sign",
+        "親指"
+      ],
+      "prompt": "giving a thumbs-up with the right hand",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "open_palm",
+      "display_name": "Open Palm / 手のひら",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 4,
+      "aliases": [
+        "open palm",
+        "palm",
+        "手のひら"
+      ],
+      "prompt": "showing an open palm toward the camera",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "pointing_forward",
+      "display_name": "Pointing Forward / 指差し",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 5,
+      "aliases": [
+        "pointing",
+        "index finger",
+        "指差し"
+      ],
+      "prompt": "pointing forward with the right index finger",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "c_sign",
+      "display_name": "C Sign / Cサイン",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 6,
+      "aliases": [
+        "c sign",
+        "c-shaped hand",
+        "Cサイン"
+      ],
+      "prompt": "making a C-shaped hand gesture with the right hand, thumb and fingers curved into a clear C shape",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "clenched_fist",
+      "display_name": "Clenched Fist / 拳",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 7,
+      "aliases": [
+        "fist",
+        "raised fist",
+        "拳"
+      ],
+      "prompt": "raising a clenched fist near the chest",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "crossed_fingers",
+      "display_name": "Crossed Fingers / クロスフィンガー",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 8,
+      "aliases": [
+        "crossed fingers",
+        "クロスフィンガー"
+      ],
+      "prompt": "crossing the index and middle fingers of the right hand",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "index_little_finger",
+      "display_name": "Index and Little Finger / 人差し指と小指",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 9,
+      "aliases": [
+        "rock sign",
+        "horns",
+        "index little finger"
+      ],
+      "prompt": "raising one hand with the index finger and little finger extended",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "loose_peace",
+      "display_name": "Loose Peace Sign / ラフなピース",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 10,
+      "aliases": [
+        "loose peace",
+        "casual peace"
+      ],
+      "prompt": "holding a loose peace sign near the face",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "stop_gesture",
+      "display_name": "Stop Gesture / 止まれ",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 11,
+      "aliases": [
+        "stop",
+        "halt",
+        "stop gesture"
+      ],
+      "prompt": "holding one open palm forward in a stop gesture",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "palm_up_presenting",
+      "display_name": "Palm Up Presenting / 手のひらで見せる",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 12,
+      "aliases": [
+        "presenting",
+        "palm up",
+        "見せる"
+      ],
+      "prompt": "holding one palm upward in a presenting gesture",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "shushing",
+      "display_name": "Shushing / しー",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Gesture / サイン",
+      "target": "Mouth / 口元",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 13,
+      "aliases": [
+        "shushing",
+        "shh",
+        "finger on lips",
+        "しー"
+      ],
+      "prompt": "placing the index finger in front of the lips, shushing gesture",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_near_mouth",
+      "display_name": "Hand Near Mouth / 口元に手",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Mouth / 口元",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 14,
+      "aliases": [
+        "hand near mouth",
+        "口元に手"
+      ],
+      "prompt": "placing one hand near the mouth",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "covering_mouth_one_hand",
+      "display_name": "Covering Mouth / 口を隠す",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Cover / 隠す",
+      "target": "Mouth / 口元",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 15,
+      "aliases": [
+        "covering mouth",
+        "mouth covered",
+        "口を隠す"
+      ],
+      "prompt": "covering the mouth with one hand",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_near_lips",
+      "display_name": "Hand Near Lips / 唇近くに手",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Mouth / 口元",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 16,
+      "aliases": [
+        "hand near lips"
+      ],
+      "prompt": "placing one hand near the lips",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "touching_cheek",
+      "display_name": "Touching Cheek / 頬に手",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Cheek / 頬",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 17,
+      "aliases": [
+        "touching cheek",
+        "頬に手"
+      ],
+      "prompt": "gently touching one cheek with one hand",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "supporting_cheek",
+      "display_name": "Supporting Cheek / 頬杖風",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Cheek / 頬",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 18,
+      "aliases": [
+        "supporting cheek",
+        "頬杖"
+      ],
+      "prompt": "resting one cheek lightly on one hand",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_under_chin",
+      "display_name": "Hand Under Chin / 顎に手",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Chin / 顎",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 19,
+      "aliases": [
+        "hand under chin",
+        "顎に手"
+      ],
+      "prompt": "resting one hand softly under the chin",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "touching_chin",
+      "display_name": "Touching Chin / 顎を触る",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Chin / 顎",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 20,
+      "aliases": [
+        "touching chin"
+      ],
+      "prompt": "touching the chin with one hand",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "covering_one_eye",
+      "display_name": "Covering One Eye / 片目を隠す",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Cover / 隠す",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 21,
+      "aliases": [
+        "cover one eye",
+        "片目を隠す"
+      ],
+      "prompt": "covering one eye with one hand",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "covering_both_eyes",
+      "display_name": "Covering Both Eyes / 両目を隠す",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Cover / 隠す",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 22,
+      "aliases": [
+        "cover both eyes",
+        "両目を隠す"
+      ],
+      "prompt": "covering both eyes with both hands",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_near_eye",
+      "display_name": "Hand Near Eye / 目元に手",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 23,
+      "aliases": [
+        "hand near eye",
+        "目元"
+      ],
+      "prompt": "placing one hand near one eye",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "partially_covering_face",
+      "display_name": "Partially Covering Face / 顔を少し隠す",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Cover / 隠す",
+      "target": "Face / 顔",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 24,
+      "aliases": [
+        "covering face",
+        "顔を隠す"
+      ],
+      "prompt": "partially covering the face with one hand",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "touching_forehead",
+      "display_name": "Touching Forehead / おでこに手",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 25,
+      "aliases": [
+        "forehead hand",
+        "おでこ"
+      ],
+      "prompt": "touching the forehead with one hand",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "brushing_hair_away",
+      "display_name": "Brushing Hair Away / 髪を払う",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Hair / 髪",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 26,
+      "aliases": [
+        "brushing hair",
+        "髪を払う"
+      ],
+      "prompt": "brushing hair away from the face with one hand",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_near_ear",
+      "display_name": "Hand Near Ear / 耳元に手",
+      "scope": "hand_expression",
+      "family": "Hand to Face / 顔まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 27,
+      "aliases": [
+        "hand near ear",
+        "耳元"
+      ],
+      "prompt": "placing one hand near the ear",
+      "stabilizer": "hand clearly visible, face clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_hand_behind_head",
+      "display_name": "One Hand Behind Head / 片手を頭の後ろ",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Raise / 上げる",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 28,
+      "aliases": [
+        "hand behind head",
+        "片手 頭の後ろ"
+      ],
+      "prompt": "placing one hand behind the head",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "both_hands_behind_head",
+      "display_name": "Both Hands Behind Head / 両手を頭の後ろ",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Raise / 上げる",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 29,
+      "aliases": [
+        "both hands behind head",
+        "両手 頭の後ろ"
+      ],
+      "prompt": "placing both hands behind the head",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_on_top_head",
+      "display_name": "Hand on Top of Head / 頭に手",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 30,
+      "aliases": [
+        "hand on head",
+        "頭に手"
+      ],
+      "prompt": "placing one hand on top of the head",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_side_head",
+      "display_name": "Hand on Side of Head / 側頭部に手",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 31,
+      "aliases": [
+        "side of head hand"
+      ],
+      "prompt": "placing one hand on the side of the head",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_hand_behind_neck",
+      "display_name": "One Hand Behind Neck / 首の後ろに片手",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Neck / 首",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 32,
+      "aliases": [
+        "hand behind neck",
+        "首の後ろ"
+      ],
+      "prompt": "placing one hand behind the neck",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "both_hands_behind_neck",
+      "display_name": "Both Hands Behind Neck / 首の後ろに両手",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Touch / 触れる",
+      "target": "Neck / 首",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 33,
+      "aliases": [
+        "both hands behind neck"
+      ],
+      "prompt": "placing both hands behind the neck",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_arm_raised",
+      "display_name": "One Arm Raised / 片腕を上げる",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Raise / 上げる",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 34,
+      "aliases": [
+        "one arm raised",
+        "片腕上げ"
+      ],
+      "prompt": "raising one arm above the head",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "both_arms_raised",
+      "display_name": "Both Arms Raised / 両腕を上げる",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Raise / 上げる",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 35,
+      "aliases": [
+        "both arms raised",
+        "両腕上げ"
+      ],
+      "prompt": "raising both arms above the head",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "stretching_arms_up",
+      "display_name": "Arms Stretching Up / 伸びをする",
+      "scope": "hand_expression",
+      "family": "Hand to Head / 頭まわりの手",
+      "action": "Raise / 上げる",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 36,
+      "aliases": [
+        "stretching arms",
+        "伸び"
+      ],
+      "prompt": "stretching both arms upward",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_hand_on_chest",
+      "display_name": "One Hand on Chest / 胸に片手",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Rest / 置く",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 37,
+      "aliases": [
+        "hand on chest",
+        "胸に手"
+      ],
+      "prompt": "placing one hand on the chest",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "both_hands_on_chest",
+      "display_name": "Both Hands on Chest / 胸に両手",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Rest / 置く",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 38,
+      "aliases": [
+        "both hands on chest"
+      ],
+      "prompt": "placing both hands on the chest",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hands_near_chest",
+      "display_name": "Hands Near Chest / 胸元に手",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Hold / 持つ・支える",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 39,
+      "aliases": [
+        "hands near chest",
+        "胸元に手"
+      ],
+      "prompt": "holding both hands near the chest",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_hand_on_stomach",
+      "display_name": "One Hand on Stomach / お腹に片手",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Rest / 置く",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 40,
+      "aliases": [
+        "hand on stomach"
+      ],
+      "prompt": "placing one hand on the stomach",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "both_hands_on_waist",
+      "display_name": "Both Hands on Waist / 両手を腰に",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Rest / 置く",
+      "target": "Waist / 腰",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 41,
+      "aliases": [
+        "hands on waist",
+        "腰に手"
+      ],
+      "prompt": "placing both hands on the waist",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_hand_on_hip",
+      "display_name": "One Hand on Hip / 片手を腰に",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Rest / 置く",
+      "target": "Hip / ヒップ",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 42,
+      "aliases": [
+        "hand on hip",
+        "片手を腰"
+      ],
+      "prompt": "placing one hand on the hip",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "both_hands_on_hips",
+      "display_name": "Both Hands on Hips / 両手を腰に",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Rest / 置く",
+      "target": "Hip / ヒップ",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 43,
+      "aliases": [
+        "hands on hips",
+        "両手を腰"
+      ],
+      "prompt": "placing both hands on the hips",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hands_folded_front",
+      "display_name": "Hands Folded in Front / 体の前で手を組む",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Hold / 持つ・支える",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 44,
+      "aliases": [
+        "hands folded front"
+      ],
+      "prompt": "folding both hands in front of the body",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_hand_over_other",
+      "display_name": "One Hand Over the Other / 手を重ねる",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 胴体まわりの手",
+      "action": "Rest / 置く",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 45,
+      "aliases": [
+        "hands layered",
+        "手を重ねる"
+      ],
+      "prompt": "placing one hand delicately over the other",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hands_on_knees",
+      "display_name": "Hands on Knees / 膝に両手",
+      "scope": "hand_expression",
+      "family": "Hand to Legs / 脚まわりの手",
+      "action": "Rest / 置く",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 46,
+      "aliases": [
+        "hands on knees",
+        "膝に手"
+      ],
+      "prompt": "resting both hands on the knees",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_hand_on_knee",
+      "display_name": "One Hand on Knee / 片膝に手",
+      "scope": "hand_expression",
+      "family": "Hand to Legs / 脚まわりの手",
+      "action": "Rest / 置く",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 47,
+      "aliases": [
+        "hand on knee",
+        "片膝に手"
+      ],
+      "prompt": "resting one hand on one knee",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hands_on_thighs",
+      "display_name": "Hands on Thighs / 太ももに両手",
+      "scope": "hand_expression",
+      "family": "Hand to Legs / 脚まわりの手",
+      "action": "Rest / 置く",
+      "target": "Thigh / 太もも",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 48,
+      "aliases": [
+        "hands on thighs",
+        "太ももに手"
+      ],
+      "prompt": "resting both hands on the thighs",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "one_hand_on_thigh",
+      "display_name": "One Hand on Thigh / 太ももに片手",
+      "scope": "hand_expression",
+      "family": "Hand to Legs / 脚まわりの手",
+      "action": "Rest / 置く",
+      "target": "Thigh / 太もも",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 49,
+      "aliases": [
+        "hand on thigh",
+        "太もも片手"
+      ],
+      "prompt": "resting one hand on the thigh",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "arms_wrapped_knees",
+      "display_name": "Arms Around Knees / 膝を抱える",
+      "scope": "hand_expression",
+      "family": "Hand to Legs / 脚まわりの手",
+      "action": "Wrap / 抱える",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 50,
+      "aliases": [
+        "hugging knees",
+        "膝を抱える"
+      ],
+      "prompt": "wrapping both arms around the knees",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_on_shin",
+      "display_name": "Hand on Shin / すねに手",
+      "scope": "hand_expression",
+      "family": "Hand to Legs / 脚まわりの手",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 51,
+      "aliases": [
+        "hand on shin"
+      ],
+      "prompt": "resting one hand on the shin",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hands_beside_legs_sitting",
+      "display_name": "Hands Beside Legs / 座って脚の横に手",
+      "scope": "hand_expression",
+      "family": "Hand to Legs / 脚まわりの手",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 52,
+      "aliases": [
+        "hands beside legs"
+      ],
+      "prompt": "placing both hands beside the legs while sitting",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "beckoning",
+      "display_name": "Beckoning / 手招き",
+      "scope": "hand_expression",
+      "family": "Communication / 伝える手",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 53,
+      "aliases": [
+        "beckoning",
+        "come here",
+        "手招き"
+      ],
+      "prompt": "making a beckoning gesture with the right hand, palm facing upward, fingers curling inward",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "small_beckoning",
+      "display_name": "Small Beckoning / 小さな手招き",
+      "scope": "hand_expression",
+      "family": "Communication / 伝える手",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 54,
+      "aliases": [
+        "small beckoning",
+        "招き猫"
+      ],
+      "prompt": "raising one hand and making a small beckoning gesture",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "waving",
+      "display_name": "Waving / 手を振る",
+      "scope": "hand_expression",
+      "family": "Communication / 伝える手",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 55,
+      "aliases": [
+        "waving",
+        "wave",
+        "手を振る"
+      ],
+      "prompt": "waving with the right hand, open palm facing the viewer",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "pointing_to_self",
+      "display_name": "Pointing to Self / 自分を指す",
+      "scope": "hand_expression",
+      "family": "Communication / 伝える手",
+      "action": "Point / 指す",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 56,
+      "aliases": [
+        "pointing to self",
+        "自分を指す"
+      ],
+      "prompt": "pointing to oneself with the right hand",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "presenting_gesture",
+      "display_name": "Presenting Gesture / 差し出す",
+      "scope": "hand_expression",
+      "family": "Communication / 伝える手",
+      "action": "Present / 見せる",
+      "target": "Object / 小物",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 57,
+      "aliases": [
+        "presenting gesture",
+        "差し出す"
+      ],
+      "prompt": "extending one open palm in a presenting gesture",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "air_quotes",
+      "display_name": "Air Quotes / エアクオート",
+      "scope": "hand_expression",
+      "family": "Communication / 伝える手",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 58,
+      "aliases": [
+        "air quotes",
+        "エアクオート"
+      ],
+      "prompt": "making air quotes with both hands",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hand_toward_camera",
+      "display_name": "Hand Toward Camera / 手を前へ",
+      "scope": "hand_expression",
+      "family": "Communication / 伝える手",
+      "action": "Present / 見せる",
+      "target": "Camera / カメラ方向",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 59,
+      "aliases": [
+        "hand toward camera",
+        "手を前へ"
+      ],
+      "prompt": "extending one hand toward the camera, fingers spread",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "finger_heart",
+      "display_name": "Finger Heart / 指ハート",
+      "scope": "hand_expression",
+      "family": "Cute Soft / かわいい・柔らかい手",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 60,
+      "aliases": [
+        "finger heart",
+        "指ハート"
+      ],
+      "prompt": "making a finger heart gesture with the right hand",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "two_hand_heart",
+      "display_name": "Two-Hand Heart / 両手ハート",
+      "scope": "hand_expression",
+      "family": "Cute Soft / かわいい・柔らかい手",
+      "action": "Gesture / サイン",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 61,
+      "aliases": [
+        "heart hands",
+        "両手ハート"
+      ],
+      "prompt": "forming a heart shape with both hands in front of the chest",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "cat_paw",
+      "display_name": "Cat Paw / 猫手",
+      "scope": "hand_expression",
+      "family": "Cute Soft / かわいい・柔らかい手",
+      "action": "Gesture / サイン",
+      "target": "Face / 顔",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 62,
+      "aliases": [
+        "cat paw",
+        "猫手"
+      ],
+      "prompt": "raising both hands near the face in a playful cat-paw pose",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hands_near_cheeks",
+      "display_name": "Hands Near Cheeks / ほっぺ横の手",
+      "scope": "hand_expression",
+      "family": "Cute Soft / かわいい・柔らかい手",
+      "action": "Hold / 持つ・支える",
+      "target": "Cheek / 頬",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 63,
+      "aliases": [
+        "hands near cheeks",
+        "頬横手"
+      ],
+      "prompt": "holding both hands near the cheeks, palms open",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "soft_small_wave",
+      "display_name": "Soft Small Wave / 小さく手を振る",
+      "scope": "hand_expression",
+      "family": "Cute Soft / かわいい・柔らかい手",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 64,
+      "aliases": [
+        "small wave",
+        "小さく手を振る"
+      ],
+      "prompt": "waving softly with one hand",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "prayer_hands",
+      "display_name": "Prayer Hands / 合掌",
+      "scope": "hand_expression",
+      "family": "Two Hands / 両手",
+      "action": "Gesture / サイン",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 65,
+      "aliases": [
+        "prayer hands",
+        "合掌"
+      ],
+      "prompt": "pressing both palms together in front of the chest",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "fingers_interlaced",
+      "display_name": "Fingers Interlaced / 指を組む",
+      "scope": "hand_expression",
+      "family": "Two Hands / 両手",
+      "action": "Hold / 持つ・支える",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 66,
+      "aliases": [
+        "interlaced fingers",
+        "指を組む"
+      ],
+      "prompt": "clasping both hands together with fingers interlaced",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hands_clasped_front",
+      "display_name": "Hands Clasped Front / 前で手を組む",
+      "scope": "hand_expression",
+      "family": "Two Hands / 両手",
+      "action": "Hold / 持つ・支える",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 67,
+      "aliases": [
+        "hands clasped",
+        "前で手を組む"
+      ],
+      "prompt": "clasping both hands in front of the body",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "hands_covering_lower_face",
+      "display_name": "Hands Covering Lower Face / 両手で口元を隠す",
+      "scope": "hand_expression",
+      "family": "Two Hands / 両手",
+      "action": "Cover / 隠す",
+      "target": "Mouth / 口元",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 68,
+      "aliases": [
+        "lower face covered",
+        "口元を隠す"
+      ],
+      "prompt": "covering the lower face with both hands",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "mystical_hand_seal",
+      "display_name": "Mystical Hand Seal / 印を結ぶ",
+      "scope": "hand_expression",
+      "family": "Hand Seal / 印・結ぶ手",
+      "action": "Gesture / サイン",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 69,
+      "aliases": [
+        "hand seal",
+        "印を結ぶ"
+      ],
+      "prompt": "forming a mystical hand seal with both hands in front of the chest, fingers interlocked",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "ninja_hand_seal",
+      "display_name": "Ninja-like Hand Seal / 忍者の印",
+      "scope": "hand_expression",
+      "family": "Hand Seal / 印・結ぶ手",
+      "action": "Gesture / サイン",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 70,
+      "aliases": [
+        "ninja hand seal",
+        "忍者の印"
+      ],
+      "prompt": "making a ninja-like hand seal with both hands held in front of the chest",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "arms_crossed",
+      "display_name": "Arms Crossed / 腕組み",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Hold / 持つ・支える",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 71,
+      "aliases": [
+        "arms crossed"
+      ],
+      "prompt": "standing or sitting with arms crossed",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "arms_lightly_folded",
+      "display_name": "Arms Lightly Folded / 軽い腕組み",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Hold / 持つ・支える",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 72,
+      "aliases": [
+        "arms lightly folded"
+      ],
+      "prompt": "folding the arms lightly in front of the body",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "hands_behind_back",
+      "display_name": "Hands Behind Back / 両手を後ろ",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Hold / 持つ・支える",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 73,
+      "aliases": [
+        "hands behind back"
+      ],
+      "prompt": "holding both hands behind the back",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "one_arm_across_body",
+      "display_name": "One Arm Across Body / 片腕を体の前",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Rest / 置く",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 74,
+      "aliases": [
+        "one arm across body"
+      ],
+      "prompt": "placing one arm across the body",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "adjusting_collar",
+      "display_name": "Adjusting Collar / 襟を直す",
+      "scope": "upper_body",
+      "family": "Clothing / 服まわり",
+      "action": "Touch / 触れる",
+      "target": "Neck / 首",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 75,
+      "aliases": [
+        "adjusting collar"
+      ],
+      "prompt": "adjusting the collar with one hand",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "adjusting_tie",
+      "display_name": "Adjusting Tie / ネクタイを直す",
+      "scope": "upper_body",
+      "family": "Clothing / 服まわり",
+      "action": "Touch / 触れる",
+      "target": "Neck / 首",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 76,
+      "aliases": [
+        "adjusting tie"
+      ],
+      "prompt": "adjusting a necktie with one hand",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "holding_sleeve",
+      "display_name": "Holding Sleeve / 袖を持つ",
+      "scope": "upper_body",
+      "family": "Clothing / 服まわり",
+      "action": "Hold / 持つ・支える",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 77,
+      "aliases": [
+        "holding sleeve"
+      ],
+      "prompt": "holding the sleeve delicately with one hand",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "hand_near_neck",
+      "display_name": "Hand Near Neck / 首元に手",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Touch / 触れる",
+      "target": "Neck / 首",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 78,
+      "aliases": [
+        "hand near neck"
+      ],
+      "prompt": "placing one hand near the neck",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "touching_shoulder",
+      "display_name": "Touching Shoulder / 肩に手",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Touch / 触れる",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 79,
+      "aliases": [
+        "touching shoulder"
+      ],
+      "prompt": "gently touching one shoulder with one hand",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "torso_twist",
+      "display_name": "Torso Twist / 上半身をひねる",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Turn / 振り向く",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 80,
+      "aliases": [
+        "torso twist"
+      ],
+      "prompt": "twisting the upper body slightly to the side",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "forward_lean",
+      "display_name": "Forward Lean / 少し前かがみ",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Lean / もたれる",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 81,
+      "aliases": [
+        "forward lean"
+      ],
+      "prompt": "leaning the upper body slightly forward",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "backward_arch",
+      "display_name": "Backward Arch / 少し反る",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Lean / もたれる",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 82,
+      "aliases": [
+        "backward arch"
+      ],
+      "prompt": "arching the upper body slightly backward",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "side_bend",
+      "display_name": "Side Bend / 横に傾ける",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Lean / もたれる",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 83,
+      "aliases": [
+        "side bend"
+      ],
+      "prompt": "bending the upper body slightly to one side",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "one_shoulder_lowered",
+      "display_name": "One Shoulder Lowered / 片肩を下げる",
+      "scope": "upper_body",
+      "family": "Relaxed / 自然",
+      "action": "Rest / 置く",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 84,
+      "aliases": [
+        "one shoulder lowered"
+      ],
+      "prompt": "standing with one shoulder slightly lowered",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "jacket_over_shoulder",
+      "display_name": "Jacket Over Shoulder / 上着を肩にかける",
+      "scope": "upper_body",
+      "family": "Clothing / 服まわり",
+      "action": "Hold / 持つ・支える",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 85,
+      "aliases": [
+        "jacket over shoulder"
+      ],
+      "prompt": "draping a jacket over one shoulder",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "relaxed_shoulders",
+      "display_name": "Relaxed Shoulders / 肩の力を抜く",
+      "scope": "upper_body",
+      "family": "Relaxed / 自然",
+      "action": "Rest / 置く",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 86,
+      "aliases": [
+        "relaxed shoulders"
+      ],
+      "prompt": "standing with relaxed shoulders and natural upper body posture",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "neutral_standing",
+      "display_name": "Neutral Standing / 自然立ち",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Rest / 置く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 87,
+      "aliases": [
+        "neutral standing"
+      ],
+      "prompt": "standing naturally with a balanced posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "relaxed_standing",
+      "display_name": "Relaxed Standing / リラックス立ち",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Rest / 置く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 88,
+      "aliases": [
+        "relaxed standing"
+      ],
+      "prompt": "standing in a relaxed natural pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "weight_one_leg",
+      "display_name": "Weight on One Leg / 片足重心",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 89,
+      "aliases": [
+        "weight on one leg"
+      ],
+      "prompt": "standing with weight on one leg",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "one_leg_forward",
+      "display_name": "One Leg Forward / 片足を前",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 90,
+      "aliases": [
+        "one leg forward"
+      ],
+      "prompt": "standing with one leg slightly forward",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "s_curve_standing",
+      "display_name": "S-Curve Standing / S字立ち",
+      "scope": "full_body",
+      "family": "Stylized Standing / 型のある立ち",
+      "action": "Rest / 置く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 91,
+      "aliases": [
+        "s-curve standing"
+      ],
+      "prompt": "standing in a graceful S-curve body pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "looking_back_body",
+      "display_name": "Looking Back / 振り返り",
+      "scope": "head",
+      "family": "Turn / 向き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 92,
+      "aliases": [
+        "looking back"
+      ],
+      "prompt": "looking back over the shoulder with the body turned slightly",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "walking_turn",
+      "display_name": "Walking Turn / 歩きながら振り向く",
+      "scope": "full_body",
+      "family": "Movement / 動き",
+      "action": "Move / 動く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 93,
+      "aliases": [
+        "walking turn"
+      ],
+      "prompt": "walking while turning back toward the viewer",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "walking_natural",
+      "display_name": "Natural Walking / 自然に歩く",
+      "scope": "full_body",
+      "family": "Movement / 動き",
+      "action": "Move / 動く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 94,
+      "aliases": [
+        "natural walking"
+      ],
+      "prompt": "walking naturally with one foot forward",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "leaning_wall",
+      "display_name": "Leaning Against Wall / 壁にもたれる",
+      "scope": "full_body",
+      "family": "Stylized Standing / 型のある立ち",
+      "action": "Lean / もたれる",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 95,
+      "aliases": [
+        "leaning against wall"
+      ],
+      "prompt": "leaning against a wall with a relaxed posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "side_profile_stand",
+      "display_name": "Side Profile Standing / 横向き立ち",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Rest / 置く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 96,
+      "aliases": [
+        "side profile standing"
+      ],
+      "prompt": "standing in side profile with clear body posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "back_view_look_back",
+      "display_name": "Back View Looking Back / 後ろ姿で振り返り",
+      "scope": "head",
+      "family": "Turn / 向き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 97,
+      "aliases": [
+        "back view looking back"
+      ],
+      "prompt": "standing with the back partly visible while looking back over the shoulder",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "hero_stance",
+      "display_name": "Hero Stance / ヒーロー立ち",
+      "scope": "full_body",
+      "family": "Stylized Standing / 型のある立ち",
+      "action": "Rest / 置く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 98,
+      "aliases": [
+        "hero stance"
+      ],
+      "prompt": "standing in a confident hero-like stance",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "hands_on_hips_full",
+      "display_name": "Hands on Hips Full Body / 腰に手で立つ",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Rest / 置く",
+      "target": "Hip / ヒップ",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 99,
+      "aliases": [
+        "hands on hips full body"
+      ],
+      "prompt": "standing with both hands on the hips",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "slight_forward_full",
+      "display_name": "Slight Forward Lean Full Body / 前傾立ち",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Lean / もたれる",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 100,
+      "aliases": [
+        "slight forward lean full body"
+      ],
+      "prompt": "standing with the body leaning slightly forward",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "crossed_legs_standing",
+      "display_name": "Crossed Legs Standing / 脚をクロスして立つ",
+      "scope": "full_body",
+      "family": "Stylized Standing / 型のある立ち",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 101,
+      "aliases": [
+        "crossed legs standing"
+      ],
+      "prompt": "standing with the legs lightly crossed",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "reaching_forward_body",
+      "display_name": "Reaching Forward / 手を伸ばす",
+      "scope": "full_body",
+      "family": "Movement / 動き",
+      "action": "Move / 動く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 102,
+      "aliases": [
+        "reaching forward"
+      ],
+      "prompt": "reaching one hand forward with the body slightly extended",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "seiza",
+      "display_name": "Seiza / 正座",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Rest / 置く",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 103,
+      "aliases": [
+        "seiza"
+      ],
+      "prompt": "sitting in seiza pose, knees together, hands resting on the lap",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "side_sitting",
+      "display_name": "Side Sitting / 横座り",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 104,
+      "aliases": [
+        "side sitting"
+      ],
+      "prompt": "sitting on the floor with both legs folded to one side",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "wariza",
+      "display_name": "Wariza / 割座",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 105,
+      "aliases": [
+        "wariza"
+      ],
+      "prompt": "sitting on the floor with knees bent and lower legs folded outward to both sides",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "hugging_knees_sitting",
+      "display_name": "Hugging Knees / 膝を抱える",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Wrap / 抱える",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 106,
+      "aliases": [
+        "hugging knees"
+      ],
+      "prompt": "sitting while hugging the knees with both arms",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "sitting_legs_together",
+      "display_name": "Sitting Legs Together / 脚をそろえて座る",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 107,
+      "aliases": [
+        "sitting legs together"
+      ],
+      "prompt": "sitting with the legs together and hands resting on the lap",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "chair_crossed_legs",
+      "display_name": "Chair Crossed Legs / 椅子で脚を組む",
+      "scope": "sitting_lying",
+      "family": "Chair Sitting / 椅子座り",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 108,
+      "aliases": [
+        "chair crossed legs"
+      ],
+      "prompt": "sitting on a chair with the legs crossed",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "sitting_edge_chair",
+      "display_name": "Sitting on Chair Edge / 椅子に浅く座る",
+      "scope": "sitting_lying",
+      "family": "Chair Sitting / 椅子座り",
+      "action": "Rest / 置く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 109,
+      "aliases": [
+        "sitting on chair edge"
+      ],
+      "prompt": "sitting lightly on the edge of a chair",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "legs_angled_side",
+      "display_name": "Legs Angled to Side / 脚を斜めに流す",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 110,
+      "aliases": [
+        "legs angled to side"
+      ],
+      "prompt": "sitting with both legs angled to one side",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "floor_one_hand_beside",
+      "display_name": "One Hand Beside on Floor / 床に片手",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Rest / 置く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 111,
+      "aliases": [
+        "one hand beside on floor"
+      ],
+      "prompt": "sitting on the floor with one hand resting beside the body",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "kneeling_one_knee",
+      "display_name": "Kneeling on One Knee / 片膝立ち",
+      "scope": "sitting_lying",
+      "family": "Kneeling Crouching / 膝立ち・しゃがみ",
+      "action": "Rest / 置く",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 112,
+      "aliases": [
+        "kneeling on one knee"
+      ],
+      "prompt": "kneeling on one knee with clear body posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "crouching",
+      "display_name": "Crouching / しゃがむ",
+      "scope": "sitting_lying",
+      "family": "Kneeling Crouching / 膝立ち・しゃがみ",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 113,
+      "aliases": [
+        "crouching"
+      ],
+      "prompt": "crouching down with a balanced posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "lying_stomach",
+      "display_name": "Lying on Stomach / うつ伏せ",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Rest / 置く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 114,
+      "aliases": [
+        "lying on stomach"
+      ],
+      "prompt": "lying on the stomach with elbows resting on the floor",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "lying_side",
+      "display_name": "Lying on Side / 横向き寝そべり",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Rest / 置く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 115,
+      "aliases": [
+        "lying on side"
+      ],
+      "prompt": "lying on the side with one hand supporting the head",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "lying_back",
+      "display_name": "Lying on Back / 仰向け",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Rest / 置く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 116,
+      "aliases": [
+        "lying on back"
+      ],
+      "prompt": "lying on the back in a relaxed posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "one_knee_bent",
+      "display_name": "One Knee Bent / 片膝を曲げる",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Rest / 置く",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 117,
+      "aliases": [
+        "one knee bent"
+      ],
+      "prompt": "standing with one knee slightly bent",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "knees_inward",
+      "display_name": "Knees Slightly Inward / 内股ぎみ",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Rest / 置く",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 118,
+      "aliases": [
+        "knees slightly inward"
+      ],
+      "prompt": "standing with the knees slightly inward",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "tiptoe",
+      "display_name": "Tiptoe / つま先立ち",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Balance / バランス",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 119,
+      "aliases": [
+        "tiptoe"
+      ],
+      "prompt": "standing on tiptoe",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "one_foot_forward",
+      "display_name": "One Foot Forward / 片足を前へ",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Rest / 置く",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 120,
+      "aliases": [
+        "one foot forward"
+      ],
+      "prompt": "standing with one foot forward",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "wide_stance",
+      "display_name": "Wide Stance / 足を広げる",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 121,
+      "aliases": [
+        "wide stance"
+      ],
+      "prompt": "standing with feet apart in a stable stance",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "side_step",
+      "display_name": "Side Step / 横ステップ",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Move / 動く",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 122,
+      "aliases": [
+        "side step"
+      ],
+      "prompt": "placing one foot to the side in a side-step pose",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "legs_together",
+      "display_name": "Legs Together / 脚をそろえる",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 123,
+      "aliases": [
+        "legs together"
+      ],
+      "prompt": "standing with the legs together",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "relaxed_feet",
+      "display_name": "Relaxed Foot Placement / 自然な足元",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Rest / 置く",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 124,
+      "aliases": [
+        "relaxed foot placement"
+      ],
+      "prompt": "standing with relaxed natural foot placement",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "hiphop_hand_camera",
+      "display_name": "Hip-Hop Hand to Camera / 手を前へ",
+      "scope": "performance",
+      "family": "Hip-Hop / ヒップホップ",
+      "action": "Present / 見せる",
+      "target": "Camera / カメラ方向",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 125,
+      "aliases": [
+        "hip-hop hand to camera"
+      ],
+      "prompt": "one hand extended toward the camera, fingers spread, street-style pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "hiphop_both_hands_chest",
+      "display_name": "Hip-Hop Both Hands Near Chest / 胸元で両手",
+      "scope": "performance",
+      "family": "Hip-Hop / ヒップホップ",
+      "action": "Gesture / サイン",
+      "target": "Chest / 胸元",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 126,
+      "aliases": [
+        "hip-hop both hands near chest"
+      ],
+      "prompt": "both hands posed near the chest in a stylized street-style gesture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "hiphop_loose_peace",
+      "display_name": "Hip-Hop Loose Peace / ラフなピース",
+      "scope": "performance",
+      "family": "Hip-Hop / ヒップホップ",
+      "action": "Gesture / サイン",
+      "target": "Face / 顔",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 127,
+      "aliases": [
+        "hip-hop loose peace"
+      ],
+      "prompt": "loose peace sign held near the face in a street-style pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "hiphop_arms_wide",
+      "display_name": "Hip-Hop Arms Wide / 腕を広げる",
+      "scope": "performance",
+      "family": "Hip-Hop / ヒップホップ",
+      "action": "Raise / 上げる",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 128,
+      "aliases": [
+        "hip-hop arms wide"
+      ],
+      "prompt": "arms spread wide in a confident street-style pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "hiphop_lean_gesture",
+      "display_name": "Hip-Hop Lean Gesture / 傾けてサイン",
+      "scope": "performance",
+      "family": "Hip-Hop / ヒップホップ",
+      "action": "Gesture / サイン",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 129,
+      "aliases": [
+        "hip-hop lean gesture"
+      ],
+      "prompt": "leaning the torso while making a stylized hand gesture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "dance_one_arm_raised",
+      "display_name": "Dance One Arm Raised / 片腕ダンス",
+      "scope": "performance",
+      "family": "Dance / ダンス",
+      "action": "Raise / 上げる",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 130,
+      "aliases": [
+        "dance one arm raised"
+      ],
+      "prompt": "dancing with one arm raised above the head",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "dance_arms_spread",
+      "display_name": "Dance Arms Spread / 両腕ダンス",
+      "scope": "performance",
+      "family": "Dance / ダンス",
+      "action": "Raise / 上げる",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 131,
+      "aliases": [
+        "dance arms spread"
+      ],
+      "prompt": "dancing with both arms spread wide",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "dance_spinning",
+      "display_name": "Spinning Dance / ターン",
+      "scope": "performance",
+      "family": "Dance / ダンス",
+      "action": "Turn / 振り向く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 132,
+      "aliases": [
+        "spinning dance"
+      ],
+      "prompt": "spinning gracefully with the body turning",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "dance_rhythmic_step",
+      "display_name": "Rhythmic Step / ステップ",
+      "scope": "performance",
+      "family": "Dance / ダンス",
+      "action": "Move / 動く",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 133,
+      "aliases": [
+        "rhythmic step"
+      ],
+      "prompt": "dancing with one foot forward in a rhythmic step",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "dance_extended_fingers",
+      "display_name": "Extended Fingers Dance / 指先まで伸ばす",
+      "scope": "performance",
+      "family": "Dance / ダンス",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 134,
+      "aliases": [
+        "extended fingers dance"
+      ],
+      "prompt": "dancing with elegant extended fingers and clear arm lines",
+      "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "breakdance_floor_support",
+      "display_name": "Breakdance Floor Support / 床に手をつく",
+      "scope": "performance",
+      "family": "Breakdance / ブレイクダンス",
+      "action": "Balance / バランス",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "hard",
+      "priority": 135,
+      "aliases": [
+        "breakdance floor support"
+      ],
+      "prompt": "low floor support pose with one or both hands touching the ground",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "breakdance_freeze",
+      "display_name": "Breakdance Freeze / フリーズ",
+      "scope": "performance",
+      "family": "Breakdance / ブレイクダンス",
+      "action": "Balance / バランス",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "hard",
+      "priority": 136,
+      "aliases": [
+        "breakdance freeze"
+      ],
+      "prompt": "breakdance freeze pose with the body held in a dynamic balance",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "breakdance_headstand",
+      "display_name": "Headstand Pose / 頭倒立",
+      "scope": "performance",
+      "family": "Breakdance / ブレイクダンス",
+      "action": "Balance / バランス",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "hard",
+      "priority": 137,
+      "aliases": [
+        "headstand pose"
+      ],
+      "prompt": "headstand pose with the body balanced vertically",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "breakdance_backspin",
+      "display_name": "Back Spin Pose / 背中で回る",
+      "scope": "performance",
+      "family": "Breakdance / ブレイクダンス",
+      "action": "Move / 動く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "hard",
+      "priority": 138,
+      "aliases": [
+        "back spin pose"
+      ],
+      "prompt": "back spin inspired floor pose with the body rotating on the back",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "japanese_bowing",
+      "display_name": "Bowing / お辞儀",
+      "scope": "performance",
+      "family": "Japanese / 和風所作",
+      "action": "Move / 動く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 139,
+      "aliases": [
+        "bowing"
+      ],
+      "prompt": "bowing politely with hands placed neatly",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "japanese_kimono_sleeve",
+      "display_name": "Holding Kimono Sleeve / 袖を押さえる",
+      "scope": "performance",
+      "family": "Japanese / 和風所作",
+      "action": "Hold / 持つ・支える",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 140,
+      "aliases": [
+        "holding kimono sleeve"
+      ],
+      "prompt": "holding a sleeve delicately in a Japanese manner pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "japanese_fan",
+      "display_name": "Holding Folding Fan / 扇子を持つ",
+      "scope": "performance",
+      "family": "Japanese / 和風所作",
+      "action": "Hold / 持つ・支える",
+      "target": "Object / 小物",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 141,
+      "aliases": [
+        "holding folding fan"
+      ],
+      "prompt": "holding a folding fan gracefully",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "japanese_formal_floor",
+      "display_name": "Formal Floor Greeting / 三つ指風",
+      "scope": "performance",
+      "family": "Japanese / 和風所作",
+      "action": "Rest / 置く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 142,
+      "aliases": [
+        "formal floor greeting"
+      ],
+      "prompt": "kneeling with both hands placed politely on the floor",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "model_s_curve",
+      "display_name": "Model S-Curve / モデルS字",
+      "scope": "performance",
+      "family": "Model / モデル立ち",
+      "action": "Rest / 置く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 143,
+      "aliases": [
+        "model s-curve"
+      ],
+      "prompt": "standing in a model-like S-curve pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "model_look_over_shoulder",
+      "display_name": "Model Looking Over Shoulder / 肩越し",
+      "scope": "head",
+      "family": "Turn / 向き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 144,
+      "aliases": [
+        "model looking over shoulder"
+      ],
+      "prompt": "looking over the shoulder in a model-like standing pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "battle_fighting_stance",
+      "display_name": "Fighting Stance / 戦闘構え",
+      "scope": "performance",
+      "family": "Battle / 戦闘",
+      "action": "Rest / 置く",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 145,
+      "aliases": [
+        "fighting stance"
+      ],
+      "prompt": "standing in a fighting stance with one foot forward",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "battle_hero_landing",
+      "display_name": "Hero Landing / ヒーロー着地",
+      "scope": "performance",
+      "family": "Battle / 戦闘",
+      "action": "Balance / バランス",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "hard",
+      "priority": 146,
+      "aliases": [
+        "hero landing"
+      ],
+      "prompt": "landing on one knee with one hand touching the ground",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "pair_face_to_face",
+      "display_name": "Face to Face / 向かい合う",
+      "scope": "pair",
+      "family": "Facing / 向かい合い",
+      "action": "Interact / 2人で関わる",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 147,
+      "aliases": [
+        "face to face"
+      ],
+      "prompt": "two people standing face to face, looking at each other",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_back_to_back",
+      "display_name": "Back to Back / 背中合わせ",
+      "scope": "pair",
+      "family": "Composition / 構図",
+      "action": "Interact / 2人で関わる",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 148,
+      "aliases": [
+        "back to back"
+      ],
+      "prompt": "two people standing back to back",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_holding_hands",
+      "display_name": "Holding Hands / 手をつなぐ",
+      "scope": "pair",
+      "family": "Connection / 接触",
+      "action": "Hold / 持つ・支える",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 149,
+      "aliases": [
+        "holding hands"
+      ],
+      "prompt": "two people holding hands",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_linking_arms",
+      "display_name": "Linking Arms / 腕を組む",
+      "scope": "pair",
+      "family": "Connection / 接触",
+      "action": "Interact / 2人で関わる",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 150,
+      "aliases": [
+        "linking arms"
+      ],
+      "prompt": "two people linking arms",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_shoulder_close",
+      "display_name": "Shoulder to Shoulder / 肩を寄せる",
+      "scope": "pair",
+      "family": "Connection / 接触",
+      "action": "Interact / 2人で関わる",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 151,
+      "aliases": [
+        "shoulder to shoulder"
+      ],
+      "prompt": "two people standing close together with shoulders touching",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_high_five",
+      "display_name": "High Five / ハイタッチ",
+      "scope": "pair",
+      "family": "Connection / 接触",
+      "action": "Gesture / サイン",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 152,
+      "aliases": [
+        "high five"
+      ],
+      "prompt": "two people giving each other a high five",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_one_pulling_hand",
+      "display_name": "Pulling by Hand / 手を引く",
+      "scope": "pair",
+      "family": "Connection / 接触",
+      "action": "Move / 動く",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 153,
+      "aliases": [
+        "pulling by hand"
+      ],
+      "prompt": "one person gently pulling the other by the hand",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_foreheads_touching",
+      "display_name": "Foreheads Touching / 額を合わせる",
+      "scope": "pair",
+      "family": "Connection / 接触",
+      "action": "Interact / 2人で関わる",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 154,
+      "aliases": [
+        "foreheads touching"
+      ],
+      "prompt": "two people touching foreheads gently",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "hand_on_collarbone",
+      "display_name": "Hand on Collarbone / 鎖骨に手",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Touch / 触れる",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 87,
+      "aliases": [
+        "hand on collarbone"
+      ],
+      "prompt": "placing one hand lightly near the collarbone",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "holding_skirt_edge_upper",
+      "display_name": "Holding Skirt Edge / スカート裾を持つ",
+      "scope": "upper_body",
+      "family": "Clothing / 服まわり",
+      "action": "Hold / 持つ・支える",
+      "target": "Clothing / 服",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 88,
+      "aliases": [
+        "holding skirt edge"
+      ],
+      "prompt": "lightly holding the edge of the skirt with one hand",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "hand_on_upper_arm",
+      "display_name": "Hand on Upper Arm / 二の腕に手",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Touch / 触れる",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 89,
+      "aliases": [
+        "hand on upper arm"
+      ],
+      "prompt": "placing one hand gently on the opposite upper arm",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "hands_gently_in_front",
+      "display_name": "Hands Gently in Front / 前で手をそろえる",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Rest / 置く",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 90,
+      "aliases": [
+        "hands gently in front"
+      ],
+      "prompt": "holding both hands gently in front of the body",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "elbows_close_to_body",
+      "display_name": "Elbows Close to Body / 肘を体に寄せる",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Rest / 置く",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 91,
+      "aliases": [
+        "elbows close to body"
+      ],
+      "prompt": "keeping the elbows close to the body with a reserved posture",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "one_hand_opposite_elbow",
+      "display_name": "One Hand on Opposite Elbow / 反対の肘に手",
+      "scope": "upper_body",
+      "family": "Arms / 腕",
+      "action": "Touch / 触れる",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 92,
+      "aliases": [
+        "hand on opposite elbow"
+      ],
+      "prompt": "holding the opposite elbow with one hand",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "shoulder_turn",
+      "display_name": "Shoulder Turn / 肩を回してひねる",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Turn / ひねる",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 93,
+      "aliases": [
+        "shoulder turn"
+      ],
+      "prompt": "turning the shoulders slightly while keeping the body balanced",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "chest_open",
+      "display_name": "Open Chest / 胸を開く",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Open / 開く",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 94,
+      "aliases": [
+        "open chest"
+      ],
+      "prompt": "opening the chest slightly with the shoulders relaxed",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "hip_tilt_torso",
+      "display_name": "Hip Tilt / 腰を少し傾ける",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Tilt / 傾ける",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 95,
+      "aliases": [
+        "hip tilt"
+      ],
+      "prompt": "tilting the hips and upper body slightly to one side",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "soft_s_curve_torso",
+      "display_name": "Soft S-Curve Torso / 上半身S字",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Curve / 曲げる",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 96,
+      "aliases": [
+        "soft s curve torso"
+      ],
+      "prompt": "forming a soft S-curve through the upper body",
+      "stabilizer": "clear upper body pose, natural posture"
+    },
+    {
+      "id": "demure_standing",
+      "display_name": "Demure Standing / 控えめ立ち",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Rest / 置く",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 60,
+      "aliases": [
+        "demure standing"
+      ],
+      "prompt": "standing with a reserved posture and legs close together",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "soft_side_turn_full",
+      "display_name": "Soft Side Turn / 柔らかい斜め立ち",
+      "scope": "full_body",
+      "family": "Stylized Standing / 型のある立ち",
+      "action": "Turn / ひねる",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 61,
+      "aliases": [
+        "soft side turn"
+      ],
+      "prompt": "standing at a gentle side angle with the body softly turned",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "small_step_pose",
+      "display_name": "Small Step Pose / 小さく一歩",
+      "scope": "full_body",
+      "family": "Movement / 動き",
+      "action": "Move / 動く",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 62,
+      "aliases": [
+        "small step pose"
+      ],
+      "prompt": "standing with a small step forward and a natural body line",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "handbag_stance",
+      "display_name": "Small Bag Holding Stance / 小物を持つ立ち",
+      "scope": "full_body",
+      "family": "Standing Basic / 基本立ち",
+      "action": "Hold / 持つ・支える",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 63,
+      "aliases": [
+        "bag holding stance"
+      ],
+      "prompt": "standing naturally while holding a small item close to the body",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "one_knee_raised",
+      "display_name": "One Knee Raised / 片膝を上げる",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Raise / 上げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 125,
+      "aliases": [
+        "one knee raised"
+      ],
+      "prompt": "standing with one knee raised upward",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "front_leg_lift",
+      "display_name": "Front Leg Lift / 脚を前に上げる",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Raise / 上げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 126,
+      "aliases": [
+        "front leg lift"
+      ],
+      "prompt": "lifting one leg forward with clear balance",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "side_leg_lift",
+      "display_name": "Side Leg Lift / 脚を横に上げる",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Raise / 上げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 127,
+      "aliases": [
+        "side leg lift"
+      ],
+      "prompt": "lifting one leg to the side with clear leg placement",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "back_leg_lift",
+      "display_name": "Back Leg Lift / 脚を後ろに上げる",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Raise / 上げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 128,
+      "aliases": [
+        "back leg lift"
+      ],
+      "prompt": "lifting one leg backward behind the body",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "arabesque_leg",
+      "display_name": "Arabesque Leg / アラベスク風の脚",
+      "scope": "lower_body",
+      "family": "Ballet / バレエ風",
+      "action": "Extend / 伸ばす",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 129,
+      "aliases": [
+        "arabesque leg"
+      ],
+      "prompt": "extending one leg backward in an arabesque-like pose",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "ballet_side_extension",
+      "display_name": "Ballet Side Extension / 横へ大きく脚を伸ばす",
+      "scope": "lower_body",
+      "family": "Ballet / バレエ風",
+      "action": "Extend / 伸ばす",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 130,
+      "aliases": [
+        "ballet side extension"
+      ],
+      "prompt": "extending one leg fully to the side in a ballet-like pose",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "wide_side_split_stance",
+      "display_name": "Wide Side Split Stance / 横に大きく開く",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Open / 開く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 131,
+      "aliases": [
+        "wide side split stance"
+      ],
+      "prompt": "standing with the legs opened widely to both sides",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "low_lunge",
+      "display_name": "Low Lunge / 低いランジ",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Bend / 曲げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 132,
+      "aliases": [
+        "low lunge"
+      ],
+      "prompt": "taking a low lunge stance with one knee bent forward",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "side_lunge",
+      "display_name": "Side Lunge / サイドランジ",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Bend / 曲げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 133,
+      "aliases": [
+        "side lunge"
+      ],
+      "prompt": "taking a side lunge stance with one leg bent and the other extended",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "high_kick_leg",
+      "display_name": "High Kick Leg / 高く蹴り上げる",
+      "scope": "lower_body",
+      "family": "Action Legs / 動きの脚",
+      "action": "Kick / 蹴る",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 134,
+      "aliases": [
+        "high kick leg"
+      ],
+      "prompt": "raising one leg high in a dynamic kick pose",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "back_kick_leg",
+      "display_name": "Back Kick Leg / 後ろ蹴り",
+      "scope": "lower_body",
+      "family": "Action Legs / 動きの脚",
+      "action": "Kick / 蹴る",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 135,
+      "aliases": [
+        "back kick leg"
+      ],
+      "prompt": "extending one leg backward in a back-kick pose",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "bent_leg_back",
+      "display_name": "Bent Leg Back / 膝を曲げて後ろへ",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Bend / 曲げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 136,
+      "aliases": [
+        "bent leg back"
+      ],
+      "prompt": "bending one knee backward with the foot lifted behind the body",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "crossed_ankles",
+      "display_name": "Crossed Ankles / 足首をクロス",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Cross / 交差",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 137,
+      "aliases": [
+        "crossed ankles"
+      ],
+      "prompt": "standing with the ankles lightly crossed",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "pointed_toe",
+      "display_name": "Pointed Toe / つま先を伸ばす",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Extend / 伸ばす",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 138,
+      "aliases": [
+        "pointed toe"
+      ],
+      "prompt": "standing with one foot extended and the toe pointed",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "heel_lift",
+      "display_name": "Heel Lift / かかとを上げる",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Raise / 上げる",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 139,
+      "aliases": [
+        "heel lift"
+      ],
+      "prompt": "standing with one heel lifted off the ground",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "toes_out_stance",
+      "display_name": "Toes Out Stance / つま先を外へ",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Open / 開く",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 140,
+      "aliases": [
+        "toes out stance"
+      ],
+      "prompt": "standing with the feet turned slightly outward",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "one_leg_balance",
+      "display_name": "One Leg Balance / 片足バランス",
+      "scope": "lower_body",
+      "family": "Standing Legs / 立ち脚",
+      "action": "Balance / バランス",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 141,
+      "aliases": [
+        "one leg balance"
+      ],
+      "prompt": "balancing on one leg with the other leg lifted slightly",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "long_step_back",
+      "display_name": "Long Step Back / 片足を後ろへ引く",
+      "scope": "lower_body",
+      "family": "Foot Placement / 足先",
+      "action": "Move / 動く",
+      "target": "Foot / 足",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 142,
+      "aliases": [
+        "long step back"
+      ],
+      "prompt": "placing one foot far behind in a long backward step",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "cross_legged_floor",
+      "display_name": "Cross-Legged Floor Sitting / あぐら座り",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Rest / 置く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 117,
+      "aliases": [
+        "cross legged floor sitting"
+      ],
+      "prompt": "sitting cross-legged on the floor with a balanced posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "lotus_sitting",
+      "display_name": "Lotus Sitting / 蓮華座風",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Rest / 置く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 118,
+      "aliases": [
+        "lotus sitting"
+      ],
+      "prompt": "sitting in a lotus-like seated pose with crossed legs",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "one_knee_up_sitting",
+      "display_name": "One Knee Up Sitting / 片膝を立てて座る",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Bend / 曲げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 119,
+      "aliases": [
+        "one knee up sitting"
+      ],
+      "prompt": "sitting with one knee raised and the other leg folded",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "both_knees_up_sitting",
+      "display_name": "Both Knees Up Sitting / 両膝を立てて座る",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Bend / 曲げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 120,
+      "aliases": [
+        "both knees up sitting"
+      ],
+      "prompt": "sitting with both knees raised in front of the body",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "one_leg_folded_one_extended",
+      "display_name": "One Leg Folded One Extended / 片脚を伸ばして座る",
+      "scope": "sitting_lying",
+      "family": "Floor Sitting / 床座り",
+      "action": "Extend / 伸ばす",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 121,
+      "aliases": [
+        "one leg folded one extended"
+      ],
+      "prompt": "sitting with one leg folded and the other leg extended",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "perched_sitting",
+      "display_name": "Perched Sitting / 端に軽く座る",
+      "scope": "sitting_lying",
+      "family": "Chair Sitting / 椅子座り",
+      "action": "Rest / 置く",
+      "target": "Chair / 椅子",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 122,
+      "aliases": [
+        "perched sitting"
+      ],
+      "prompt": "sitting perched lightly on the edge of a seat",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "kneeling_both_knees",
+      "display_name": "Kneeling on Both Knees / 両膝立ち",
+      "scope": "sitting_lying",
+      "family": "Kneeling Crouching / 膝立ち・しゃがみ",
+      "action": "Rest / 置く",
+      "target": "Knee / 膝",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 123,
+      "aliases": [
+        "kneeling both knees"
+      ],
+      "prompt": "kneeling upright on both knees with clear posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "relaxed_side_lying",
+      "display_name": "Relaxed Side Lying / 横向きでリラックス",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Rest / 置く",
+      "target": "Ground / 床",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 124,
+      "aliases": [
+        "relaxed side lying"
+      ],
+      "prompt": "lying on the side with the legs slightly bent in a relaxed pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "pair_side_hug",
+      "display_name": "Side Hug / 横からハグ",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "two people standing close with one person giving the other a side hug",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_hug_front",
+      "display_name": "Front Hug / 正面ハグ",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "two people embracing each other in a front hug",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_hug_from_behind",
+      "display_name": "Hug From Behind / 後ろからハグ",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person hugging the other from behind",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_hand_on_shoulder",
+      "display_name": "Hand on Shoulder / 肩に手",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person placing a hand gently on the other person's shoulder",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_hand_on_waist",
+      "display_name": "Hand on Waist / 腰に手",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person placing a hand on the other person's waist while standing close together",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_touching_cheek",
+      "display_name": "Touching Cheek / 頬に触れる",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person gently touching the other person's cheek",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_cheek_to_cheek",
+      "display_name": "Cheek to Cheek / 頬を寄せる",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "two people standing close with their cheeks touching",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_arm_around_shoulder",
+      "display_name": "Arm Around Shoulder / 肩を抱く",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person wrapping an arm around the other person's shoulder",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_guiding_hand",
+      "display_name": "Guiding by the Hand / 手を取って導く",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person holding the other person's hand and gently guiding them forward",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_hand_on_back",
+      "display_name": "Hand on Back / 背中に手",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person resting a hand gently on the other person's back",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_lap_pillow",
+      "display_name": "Lap Pillow / 膝枕",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person resting their head on the other person's lap",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_carry_bridal",
+      "display_name": "Bridal Carry / お姫様抱っこ",
+      "scope": "pair",
+      "family": "Pair / 2人",
+      "action": "Interaction / 触れ合い",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "high",
+      "priority": 1200,
+      "aliases": [],
+      "prompt": "one person carrying the other in both arms",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "ballet_arabesque",
+      "display_name": "Ballet Arabesque / アラベスク",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "ballet arabesque pose with one leg extended backward and the upper body balanced gracefully",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "ballet_attitude",
+      "display_name": "Ballet Attitude / アティチュード",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "ballet attitude pose with one leg raised and bent gracefully",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "ballet_second_position",
+      "display_name": "Ballet Second Position / 2番ポジション",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "standing in a ballet-inspired wide second position with clear leg placement",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "dance_high_kick",
+      "display_name": "High Kick / ハイキック",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "dynamic dance pose with one leg kicked high upward",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "dance_side_kick_extension",
+      "display_name": "Side Leg Extension / 横脚上げ",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "dance pose with one leg extended high to the side",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "dance_back_leg_lift",
+      "display_name": "Back Leg Lift / 後ろ脚上げ",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "dance pose with one leg lifted backward in a graceful extension",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "dance_jump_pose",
+      "display_name": "Jump Pose / ジャンプ",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "dynamic performance pose captured mid-jump with energetic body lines",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "dance_split_pose",
+      "display_name": "Split Pose / 開脚ポーズ",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "performance pose with the legs opened widely in a split-like stretch",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "performance_stage_pose",
+      "display_name": "Stage Finish Pose / 決めポーズ",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "confident stage finish pose with the body clearly presented to the viewer",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "performance_mic_pose",
+      "display_name": "Performance Mic Pose / マイクパフォーマンス",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "stage performance pose holding an imaginary microphone with energetic posture",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "performance_guitar_pose",
+      "display_name": "Performance Guitar Pose / ギターパフォーマンス",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "performance pose holding an imaginary guitar with lively stage energy",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "martial_kick_pose",
+      "display_name": "Martial Kick Pose / 格闘キック",
+      "scope": "performance",
+      "family": "Performance / パフォーマンス",
+      "action": "Performance / 動き",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1300,
+      "aliases": [],
+      "prompt": "martial performance pose with one leg raised in a kicking motion",
+      "stabilizer": "clear body pose, natural posture"
+    },
+    {
+      "id": "kung_fu_stance",
+      "display_name": "Kung Fu Stance / カンフー構え",
+      "scope": "performance",
+      "family": "Battle / 格闘",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1210,
+      "aliases": [
+        "kung fu stance",
+        "martial arts stance"
+      ],
+      "prompt": "kung fu stance, balanced martial arts pose, one arm forward, one arm guarding, stable lower body, focused realistic action posture",
+      "stabilizer": "clear full body action pose, natural posture"
+    },
+    {
+      "id": "high_kick",
+      "display_name": "High Kick / ハイキック",
+      "scope": "performance",
+      "family": "Battle / 格闘",
+      "action": "Performance / 演技",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1211,
+      "aliases": [
+        "high kick"
+      ],
+      "prompt": "high kick pose, one leg raised high, dynamic martial arts movement, balanced body posture, clear full body action pose",
+      "stabilizer": "clear full body action pose, natural posture"
+    },
+    {
+      "id": "punch_pose",
+      "display_name": "Punch Pose / パンチポーズ",
+      "scope": "performance",
+      "family": "Battle / 格闘",
+      "action": "Performance / 演技",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1212,
+      "aliases": [
+        "punch pose",
+        "punching pose"
+      ],
+      "prompt": "punching pose, one fist extended forward, opposite hand guarding, strong realistic action posture, clear arm movement",
+      "stabilizer": "clear arm movement, natural body posture"
+    },
+    {
+      "id": "retro_dance_pose",
+      "display_name": "Monkey Dance / モンキーダンス",
+      "scope": "performance",
+      "family": "Dance / ダンス",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1220,
+      "aliases": [
+        "retro dance pose"
+      ],
+      "prompt": "retro dance pose, both elbows bent, arms raised to the sides in alternating directions, playful rhythmic upper body movement, realistic full body dance posture",
+      "stabilizer": "clear full body dance posture, natural body line"
+    },
+    {
+      "id": "kirara_jump",
+      "display_name": "Kirara Jump / きららジャンプ",
+      "scope": "performance",
+      "family": "Dance / ダンス",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1222,
+      "aliases": [
+        "cute jump pose"
+      ],
+      "prompt": "cute jumping pose, both feet together, knees bent backward, both arms raised upward, lively full body jump posture",
+      "stabilizer": "clear full body jump posture, natural pose"
+    },
+    {
+      "id": "baseball_pitch",
+      "display_name": "Baseball Pitch / 野球投球",
+      "scope": "performance",
+      "family": "Sports / スポーツ",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1230,
+      "aliases": [
+        "baseball pitch"
+      ],
+      "prompt": "baseball pitching pose, one arm pulled back as if throwing, opposite leg lifted, torso twisted, realistic athletic motion",
+      "stabilizer": "clear athletic full body pose, natural body balance"
+    },
+    {
+      "id": "baseball_swing",
+      "display_name": "Baseball Swing / 野球スイング",
+      "scope": "performance",
+      "family": "Sports / スポーツ",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1231,
+      "aliases": [
+        "baseball swing"
+      ],
+      "prompt": "baseball batting swing pose, both hands positioned as if holding a bat, torso rotated, legs planted, realistic athletic stance",
+      "stabilizer": "clear athletic full body pose, natural body balance"
+    },
+    {
+      "id": "sumo_stance",
+      "display_name": "Sumo Stance / 相撲構え",
+      "scope": "performance",
+      "family": "Sports / スポーツ",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1232,
+      "aliases": [
+        "sumo stance"
+      ],
+      "prompt": "sumo stance, wide low stance, knees bent outward, hands forward, stable powerful athletic posture",
+      "stabilizer": "clear athletic full body pose, stable lower body"
+    },
+    {
+      "id": "rugby_crouch",
+      "display_name": "Rugby Crouch / ラグビー構え",
+      "scope": "performance",
+      "family": "Sports / スポーツ",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1233,
+      "aliases": [
+        "rugby crouch"
+      ],
+      "prompt": "rugby crouching stance, body leaning forward, one or both hands near the ground, knees bent, ready-to-charge athletic posture",
+      "stabilizer": "clear athletic full body pose, natural body balance"
+    },
+    {
+      "id": "catwalk_walk",
+      "display_name": "Catwalk Walk / キャットウォーク",
+      "scope": "performance",
+      "family": "Model / モデル系",
+      "action": "Move / 動き",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1240,
+      "aliases": [
+        "catwalk walk",
+        "runway walk"
+      ],
+      "prompt": "fashion model catwalk pose, walking forward with confident posture, one foot crossing slightly in front of the other, elegant full body movement",
+      "stabilizer": "clear full body pose, natural fashion model posture"
+    },
+    {
+      "id": "model_standing_pose",
+      "display_name": "Model Pose / モデル立ち",
+      "scope": "performance",
+      "family": "Model / モデル系",
+      "action": "Balance / バランス",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1241,
+      "aliases": [
+        "model pose",
+        "fashion model standing pose"
+      ],
+      "prompt": "fashion model standing pose, one hand on hip, weight on one leg, confident elegant posture",
+      "stabilizer": "clear full body pose, natural fashion model posture"
+    },
+    {
+      "id": "picking_from_ground",
+      "display_name": "Picking From Ground / 地面から拾う",
+      "scope": "performance",
+      "family": "Flexibility / 柔軟",
+      "action": "Lean / 傾き",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1250,
+      "aliases": [
+        "picking from ground",
+        "floor reach hand"
+      ],
+      "prompt": "deep forward bending pose, upper body folded down toward the ground, one hand reaching close to the floor, knees slightly bent, clear full body posture",
+      "stabilizer": "clear full body flexibility pose, natural posture"
+    },
+    {
+      "id": "deep_backbend",
+      "display_name": "Deep Backbend / 大きく反る",
+      "scope": "performance",
+      "family": "Flexibility / 柔軟",
+      "action": "Lean / 傾き",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1251,
+      "aliases": [
+        "deep backbend"
+      ],
+      "prompt": "deep backbend pose, torso arched strongly backward, chest lifted upward, head tilted back, clear full body flexibility pose",
+      "stabilizer": "clear full body flexibility pose, natural posture"
+    },
+    {
+      "id": "bridge_pose",
+      "display_name": "Bridge Pose / ブリッジ",
+      "scope": "performance",
+      "family": "Flexibility / 柔軟",
+      "action": "Balance / バランス",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1252,
+      "aliases": [
+        "bridge pose"
+      ],
+      "prompt": "bridge pose, body arched backward with hands and feet on the ground, torso lifted upward, clear full body flexibility posture",
+      "stabilizer": "clear full body flexibility pose, natural posture"
+    },
+    {
+      "id": "handstand_pose",
+      "display_name": "Handstand / 倒立",
+      "scope": "performance",
+      "family": "Flexibility / 柔軟",
+      "action": "Balance / バランス",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1253,
+      "aliases": [
+        "handstand"
+      ],
+      "prompt": "handstand pose, body upside down, both hands on the ground, legs extended upward, clear full body balance pose",
+      "stabilizer": "clear full body balance pose, natural posture"
+    },
+    {
+      "id": "floor_reach",
+      "display_name": "Floor Reach / 床に手を伸ばす",
+      "scope": "performance",
+      "family": "Flexibility / 柔軟",
+      "action": "Lean / 傾き",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1254,
+      "aliases": [
+        "floor reach"
+      ],
+      "prompt": "standing floor reach pose, torso bent forward, both hands reaching toward the floor, legs mostly straight, clear full body stretch",
+      "stabilizer": "clear full body flexibility pose, natural posture"
+    },
+    {
+      "id": "backflip_pose",
+      "display_name": "Backflip / バク転",
+      "scope": "performance",
+      "family": "Flexibility / 柔軟",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1255,
+      "aliases": [
+        "backflip"
+      ],
+      "prompt": "backflip pose, body rotating backward in the air, torso arched, legs lifted overhead, dynamic full body acrobatic motion",
+      "stabilizer": "clear full body acrobatic pose, natural posture"
+    },
+    {
+      "id": "front_split",
+      "display_name": "Front Split / 前後開脚",
+      "scope": "lower_body",
+      "family": "Flexibility / 柔軟",
+      "action": "Balance / バランス",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1120,
+      "aliases": [
+        "front split"
+      ],
+      "prompt": "front split leg pose, one leg extended forward and the other leg extended backward, clear lower body flexibility pose",
+      "stabilizer": "clear lower body pose, natural leg placement"
+    },
+    {
+      "id": "side_split",
+      "display_name": "Side Split / 横開脚",
+      "scope": "lower_body",
+      "family": "Flexibility / 柔軟",
+      "action": "Balance / バランス",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1121,
+      "aliases": [
+        "side split"
+      ],
+      "prompt": "side split leg pose, both legs extended wide to the left and right, clear lower body flexibility pose",
+      "stabilizer": "clear lower body pose, natural leg placement"
+    },
+    {
+      "id": "high_leg_extension",
+      "display_name": "High Leg Extension / 脚を高く上げる",
+      "scope": "lower_body",
+      "family": "Flexibility / 柔軟",
+      "action": "Balance / バランス",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1122,
+      "aliases": [
+        "high leg extension"
+      ],
+      "prompt": "high leg extension pose, one leg lifted high upward, standing on the other leg, clear lower body flexibility pose",
+      "stabilizer": "clear lower body pose, natural leg placement"
+    },
+    {
+      "id": "ballet_arabesque_legs",
+      "display_name": "Ballet Arabesque Legs / アラベスク脚",
+      "scope": "lower_body",
+      "family": "Flexibility / 柔軟",
+      "action": "Balance / バランス",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1123,
+      "aliases": [
+        "arabesque legs"
+      ],
+      "prompt": "ballet arabesque leg pose, one leg extended backward and lifted, standing leg stable, elegant lower body line",
+      "stabilizer": "clear lower body pose, natural leg placement"
+    },
+    {
+      "id": "knee_lift_balance",
+      "display_name": "Knee Lift Balance / 膝上げバランス",
+      "scope": "lower_body",
+      "family": "Flexibility / 柔軟",
+      "action": "Balance / バランス",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1124,
+      "aliases": [
+        "knee lift balance"
+      ],
+      "prompt": "one knee lifted high in front of the body, standing on one leg, balanced lower body pose",
+      "stabilizer": "clear lower body pose, natural leg placement"
+    },
+    {
+      "id": "right_hand_in_pocket",
+      "display_name": "Hand in Pocket / ポケットに手",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 手と胴体",
+      "action": "Rest / 休める",
+      "target": "Waist / 腰",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 305,
+      "aliases": [
+        "hand in pocket",
+        "right hand in pocket"
+      ],
+      "prompt": "one hand in a pocket, relaxed casual standing pose, clear hand placement",
+      "stabilizer": "hand clearly visible, natural hand placement"
+    },
+    {
+      "id": "hands_in_pockets",
+      "display_name": "Hands in Pockets / 両手をポケット",
+      "scope": "hand_expression",
+      "family": "Two Hands / 両手",
+      "action": "Rest / 休める",
+      "target": "Waist / 腰",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 306,
+      "aliases": [
+        "hands in pockets",
+        "both hands in pockets"
+      ],
+      "prompt": "both hands in pockets, relaxed casual standing pose, clear hand placement",
+      "stabilizer": "hands clearly placed, natural posture"
+    },
+    {
+      "id": "heavy_carry",
+      "display_name": "Heavy Carry / 重い荷物を持つ",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 手と胴体",
+      "action": "Hold / 持つ動作",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 307,
+      "aliases": [
+        "heavy carry"
+      ],
+      "prompt": "as if carrying heavy weight, arms lowered with visible weight tension, shoulders slightly hunched, body leaning forward, realistic strained posture",
+      "stabilizer": "clear weight-bearing posture, natural body tension"
+    },
+    {
+      "id": "heavy_backpack",
+      "display_name": "Heavy Backpack / 重いリュック",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Hold / 持つ動作",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1005,
+      "aliases": [
+        "heavy backpack"
+      ],
+      "prompt": "as if carrying a heavy backpack, shoulders pulled downward, upper body leaning forward slightly, knees slightly bent, realistic weight-bearing posture",
+      "stabilizer": "clear weight-bearing posture, natural body tension"
+    },
+    {
+      "id": "heavy_side_bag",
+      "display_name": "Heavy Bag Side / 重いバッグを横に持つ",
+      "scope": "hand_expression",
+      "family": "Hand to Torso / 手と胴体",
+      "action": "Hold / 持つ動作",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 308,
+      "aliases": [
+        "heavy side bag"
+      ],
+      "prompt": "as if carrying heavy weight on one side, one shoulder lowered, torso leaning slightly to balance the weight, one arm pulled downward, realistic weight-bearing posture",
+      "stabilizer": "clear weight-bearing posture, natural body tension"
+    },
+    {
+      "id": "pair_couple_arm_around",
+      "display_name": "Couple Arm Around / 肩を抱く",
+      "scope": "pair",
+      "family": "Connection / つながり",
+      "action": "Interact / 2人の動作",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1410,
+      "aliases": [
+        "couple arm around"
+      ],
+      "prompt": "two people standing close together, one person gently holding the other close around the shoulder, natural couple-like body language",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "pair_couple_leaning_close",
+      "display_name": "Couple Leaning Close / 寄り添う",
+      "scope": "pair",
+      "family": "Connection / つながり",
+      "action": "Interact / 2人の動作",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1411,
+      "aliases": [
+        "couple leaning close"
+      ],
+      "prompt": "two people leaning close to each other, shoulders nearly touching, relaxed intimate couple-like pose, natural body language",
+      "stabilizer": "both people clearly visible, clear relationship between the two characters"
+    },
+    {
+      "id": "gaze_at_viewer",
+      "display_name": "Looking at Viewer / 正面を見る",
+      "scope": "gaze",
+      "family": "Direct / 正面",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 700,
+      "aliases": [
+        "looking at viewer",
+        "direct gaze"
+      ],
+      "prompt": "looking at viewer, direct gaze, eyes clearly directed toward the camera",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_away",
+      "display_name": "Looking Away / 視線を外す",
+      "scope": "gaze",
+      "family": "Away / 逸らす",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 701,
+      "aliases": [
+        "looking away"
+      ],
+      "prompt": "looking away, gaze directed away from the viewer, natural off-camera gaze",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_up",
+      "display_name": "Looking Up / 上を見る",
+      "scope": "gaze",
+      "family": "Direction / 方向",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 702,
+      "aliases": [
+        "looking up"
+      ],
+      "prompt": "looking up, gaze directed upward, eyes looking toward something above",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_down",
+      "display_name": "Looking Down / 下を見る",
+      "scope": "gaze",
+      "family": "Direction / 方向",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 703,
+      "aliases": [
+        "looking down"
+      ],
+      "prompt": "looking down, gaze directed downward, eyes looking toward the ground",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_to_side",
+      "display_name": "Looking to Side / 横を見る",
+      "scope": "gaze",
+      "family": "Direction / 方向",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 704,
+      "aliases": [
+        "looking to side",
+        "side gaze"
+      ],
+      "prompt": "looking to the side, gaze directed sideways, eyes looking left or right",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_back",
+      "display_name": "Looking Back Gaze / 振り返って見る",
+      "scope": "gaze",
+      "family": "Direction / 方向",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 705,
+      "aliases": [
+        "looking back gaze"
+      ],
+      "prompt": "gaze directed back over the shoulder, eyes looking behind the body",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_at_hand",
+      "display_name": "Looking at Hand / 手を見る",
+      "scope": "gaze",
+      "family": "Focus / 注視",
+      "action": "Gaze / 視線",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 706,
+      "aliases": [
+        "looking at hand"
+      ],
+      "prompt": "looking at the hand, gaze focused on the hand, eyes clearly directed toward the hand",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_at_object",
+      "display_name": "Looking at Object / 物を見る",
+      "scope": "gaze",
+      "family": "Focus / 注視",
+      "action": "Gaze / 視線",
+      "target": "Object / 物",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 707,
+      "aliases": [
+        "looking at object"
+      ],
+      "prompt": "looking at an object, gaze focused on a nearby object, eyes clearly directed toward the object",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_at_person",
+      "display_name": "Looking at Another Person / 相手を見る",
+      "scope": "gaze",
+      "family": "Focus / 注視",
+      "action": "Gaze / 視線",
+      "target": "Partner / 相手",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 708,
+      "aliases": [
+        "looking at another person"
+      ],
+      "prompt": "looking at another person, gaze focused on the other person, clear eye direction",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "eyes_closed",
+      "display_name": "Eyes Closed / 目を閉じる",
+      "scope": "gaze",
+      "family": "Away / 逸らす",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 709,
+      "aliases": [
+        "eyes closed"
+      ],
+      "prompt": "eyes closed, relaxed closed-eye expression, no direct gaze",
+      "stabilizer": "clear eye state, natural closed eyes"
+    },
+    {
+      "id": "head_look_left",
+      "display_name": "Look Left / 左を見る",
+      "scope": "head",
+      "family": "Turn / 向き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 800,
+      "aliases": [
+        "look left"
+      ],
+      "prompt": "head turned to the left, looking sideways, natural neck direction",
+      "stabilizer": "clear head direction, natural neck posture"
+    },
+    {
+      "id": "head_look_right",
+      "display_name": "Look Right / 右を見る",
+      "scope": "head",
+      "family": "Turn / 向き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 801,
+      "aliases": [
+        "look right"
+      ],
+      "prompt": "head turned to the right, looking sideways, natural neck direction",
+      "stabilizer": "clear head direction, natural neck posture"
+    },
+    {
+      "id": "head_look_up",
+      "display_name": "Look Up / 上を向く",
+      "scope": "head",
+      "family": "Turn / 向き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 802,
+      "aliases": [
+        "head look up"
+      ],
+      "prompt": "head tilted upward, looking up, natural neck extension",
+      "stabilizer": "clear head direction, natural neck posture"
+    },
+    {
+      "id": "head_look_down",
+      "display_name": "Look Down / 下を向く",
+      "scope": "head",
+      "family": "Turn / 向き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 803,
+      "aliases": [
+        "head look down"
+      ],
+      "prompt": "head tilted downward, looking down, natural neck bend",
+      "stabilizer": "clear head direction, natural neck posture"
+    },
+    {
+      "id": "head_tilt_left",
+      "display_name": "Head Tilt Left / 頭を左に傾ける",
+      "scope": "head",
+      "family": "Tilt / 傾き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 804,
+      "aliases": [
+        "head tilt left"
+      ],
+      "prompt": "head tilted slightly to the left, natural gentle neck angle",
+      "stabilizer": "clear head direction, natural neck posture"
+    },
+    {
+      "id": "head_tilt_right",
+      "display_name": "Head Tilt Right / 頭を右に傾ける",
+      "scope": "head",
+      "family": "Tilt / 傾き",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 805,
+      "aliases": [
+        "head tilt right"
+      ],
+      "prompt": "head tilted slightly to the right, natural gentle neck angle",
+      "stabilizer": "clear head direction, natural neck posture"
+    },
+    {
+      "id": "chin_up",
+      "display_name": "Chin Up / あごを上げる",
+      "scope": "head",
+      "family": "Chin / あご",
+      "action": "Turn / 向きを変える",
+      "target": "Chin / あご",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 806,
+      "aliases": [
+        "chin up"
+      ],
+      "prompt": "chin lifted slightly upward, confident head posture, natural neck extension",
+      "stabilizer": "clear head direction, natural neck posture"
+    },
+    {
+      "id": "chin_down",
+      "display_name": "Chin Down / あごを下げる",
+      "scope": "head",
+      "family": "Chin / あご",
+      "action": "Turn / 向きを変える",
+      "target": "Chin / あご",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 807,
+      "aliases": [
+        "chin down"
+      ],
+      "prompt": "chin lowered slightly, modest head posture, natural neck bend",
+      "stabilizer": "clear head direction, natural neck posture"
+    },
+    {
+      "id": "head_lean_back",
+      "display_name": "Head Lean Back / 頭を後ろへ反らす",
+      "scope": "head",
+      "family": "Neck / 首",
+      "action": "Turn / 向きを変える",
+      "target": "Head / 頭",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 808,
+      "aliases": [
+        "head lean back"
+      ],
+      "prompt": "head leaning back strongly, neck extended backward, dramatic upward head posture",
+      "stabilizer": "clear head direction, natural neck posture"
+    }
+  ]
+}
