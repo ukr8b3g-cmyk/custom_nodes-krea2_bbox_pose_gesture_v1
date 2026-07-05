@@ -1792,7 +1792,7 @@
     {
       "id": "looking_back_body",
       "display_name": "Looking Back / 振り返り",
-      "scope": "head",
+      "scope": "gaze",
       "family": "Turn / 向き",
       "action": "Turn / 向きを変える",
       "target": "Head / 頭",
@@ -1802,7 +1802,7 @@
       "aliases": [
         "looking back"
       ],
-      "prompt": "looking back over the shoulder with the body turned slightly",
+      "prompt": "looking back over the shoulder, gaze directed behind the body",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -1872,7 +1872,7 @@
     {
       "id": "back_view_look_back",
       "display_name": "Back View Looking Back / 後ろ姿で振り返り",
-      "scope": "head",
+      "scope": "gaze",
       "family": "Turn / 向き",
       "action": "Turn / 向きを変える",
       "target": "Head / 頭",
@@ -1882,7 +1882,7 @@
       "aliases": [
         "back view looking back"
       ],
-      "prompt": "standing with the back partly visible while looking back over the shoulder",
+      "prompt": "back partly visible, gaze looking back over the shoulder, rear-facing composition",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -1978,7 +1978,7 @@
       "aliases": [
         "seiza"
       ],
-      "prompt": "sitting in seiza pose, knees together, hands resting on the lap",
+      "prompt": "sitting in seiza pose, knees together, upright composed seated posture",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -2042,7 +2042,7 @@
       "aliases": [
         "sitting legs together"
       ],
-      "prompt": "sitting with the legs together and hands resting on the lap",
+      "prompt": "sitting with the legs together, neat compact seated posture",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -2154,7 +2154,7 @@
       "aliases": [
         "lying on stomach"
       ],
-      "prompt": "lying on the stomach with elbows resting on the floor",
+      "prompt": "lying on the stomach, relaxed prone resting pose, torso facing downward",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -2170,7 +2170,7 @@
       "aliases": [
         "lying on side"
       ],
-      "prompt": "lying on the side with one hand supporting the head",
+      "prompt": "lying on the side, relaxed body line, natural side resting pose",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -2623,8 +2623,8 @@
     },
     {
       "id": "model_look_over_shoulder",
-      "display_name": "Model Looking Over Shoulder / 肩越し",
-      "scope": "head",
+      "display_name": "Looking Over Shoulder / 肩越し視線",
+      "scope": "gaze",
       "family": "Turn / 向き",
       "action": "Turn / 向きを変える",
       "target": "Head / 頭",
@@ -2634,7 +2634,7 @@
       "aliases": [
         "model looking over shoulder"
       ],
-      "prompt": "looking over the shoulder in a model-like standing pose",
+      "prompt": "looking over the shoulder, gaze turned back with a clean model-like pose",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -3568,7 +3568,7 @@
       "aliases": [
         "street squat"
       ],
-      "prompt": "deep street-style squat, heels on the ground, elbows resting near the knees, relaxed low squat posture",
+      "prompt": "deep street-style squat, heels on the ground, knees deeply bent, relaxed low squat posture",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -3683,6 +3683,86 @@
         "back lean sitting"
       ],
       "prompt": "sitting on the floor while leaning back on both hands, relaxed supported seated pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "reclining_upper_body",
+      "display_name": "Reclining Upper Body / 上体起こし寝そべり",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Lean / もたれる",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 134,
+      "aliases": [
+        "reclining upper body"
+      ],
+      "prompt": "reclining pose, upper body slightly raised, torso angled upward, relaxed resting pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "raised_side_lying",
+      "display_name": "Raised Side Lying / 上体起こし横向き寝",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Rest / 置く",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 135,
+      "aliases": [
+        "raised side lying"
+      ],
+      "prompt": "side lying pose, upper body slightly raised, relaxed body line, calm resting pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "one_knee_bent_lying",
+      "display_name": "One Knee Bent Lying / 片膝立て仰向け",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Rest / 置く",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 136,
+      "aliases": [
+        "one knee bent lying"
+      ],
+      "prompt": "lying on the back, one knee bent, relaxed lower body pose, natural resting posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "curled_side_lying",
+      "display_name": "Curled Side Lying / 丸まり横向き寝",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Rest / 置く",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 137,
+      "aliases": [
+        "curled side lying"
+      ],
+      "prompt": "curled side lying pose, knees slightly tucked, compact relaxed posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "legs_raised_lying",
+      "display_name": "Legs Raised Lying / 脚上げ寝そべり",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Raise / 上げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 138,
+      "aliases": [
+        "legs raised lying"
+      ],
+      "prompt": "lying on the back, legs raised upward, torso relaxed, controlled lower body pose",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -4748,6 +4828,40 @@
       "stabilizer": "clear eye direction, natural gaze"
     },
     {
+      "id": "gaze_left",
+      "display_name": "Looking Left / 左を見る",
+      "scope": "gaze",
+      "family": "Direction / 方向",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 710,
+      "aliases": [
+        "looking left",
+        "left gaze"
+      ],
+      "prompt": "looking to the left, gaze directed leftward, eyes clearly turned left",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
+      "id": "gaze_right",
+      "display_name": "Looking Right / 右を見る",
+      "scope": "gaze",
+      "family": "Direction / 方向",
+      "action": "Gaze / 視線",
+      "target": "Eye / 目",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 711,
+      "aliases": [
+        "looking right",
+        "right gaze"
+      ],
+      "prompt": "looking to the right, gaze directed rightward, eyes clearly turned right",
+      "stabilizer": "clear eye direction, natural gaze"
+    },
+    {
       "id": "gaze_at_hand",
       "display_name": "Looking at Hand / 手を見る",
       "scope": "gaze",
@@ -4813,7 +4927,7 @@
     },
     {
       "id": "head_look_left",
-      "display_name": "Look Left / 左を見る",
+      "display_name": "Head Facing Left / 顔を左へ",
       "scope": "head",
       "family": "Turn / 向き",
       "action": "Turn / 向きを変える",
@@ -4822,14 +4936,15 @@
       "reliability": "medium",
       "priority": 800,
       "aliases": [
-        "look left"
+        "head facing left",
+        "face turned left"
       ],
-      "prompt": "head turned to the left, looking sideways, natural neck direction",
+      "prompt": "head facing left, face turned to the left, neck naturally rotated",
       "stabilizer": "clear head direction, natural neck posture"
     },
     {
       "id": "head_look_right",
-      "display_name": "Look Right / 右を見る",
+      "display_name": "Head Facing Right / 顔を右へ",
       "scope": "head",
       "family": "Turn / 向き",
       "action": "Turn / 向きを変える",
@@ -4838,14 +4953,15 @@
       "reliability": "medium",
       "priority": 801,
       "aliases": [
-        "look right"
+        "head facing right",
+        "face turned right"
       ],
-      "prompt": "head turned to the right, looking sideways, natural neck direction",
+      "prompt": "head facing right, face turned to the right, neck naturally rotated",
       "stabilizer": "clear head direction, natural neck posture"
     },
     {
       "id": "head_look_up",
-      "display_name": "Look Up / 上を向く",
+      "display_name": "Head Facing Up / 顔を上へ",
       "scope": "head",
       "family": "Turn / 向き",
       "action": "Turn / 向きを変える",
@@ -4854,14 +4970,15 @@
       "reliability": "medium",
       "priority": 802,
       "aliases": [
-        "head look up"
+        "head facing up",
+        "face angled up"
       ],
-      "prompt": "head tilted upward, looking up, natural neck extension",
+      "prompt": "head facing upward, face angled up, neck slightly extended",
       "stabilizer": "clear head direction, natural neck posture"
     },
     {
       "id": "head_look_down",
-      "display_name": "Look Down / 下を向く",
+      "display_name": "Head Facing Down / 顔を下へ",
       "scope": "head",
       "family": "Turn / 向き",
       "action": "Turn / 向きを変える",
@@ -4870,9 +4987,10 @@
       "reliability": "medium",
       "priority": 803,
       "aliases": [
-        "head look down"
+        "head facing down",
+        "face angled down"
       ],
-      "prompt": "head tilted downward, looking down, natural neck bend",
+      "prompt": "head facing downward, face angled down, chin lowered naturally",
       "stabilizer": "clear head direction, natural neck posture"
     },
     {
@@ -4888,7 +5006,7 @@
       "aliases": [
         "head tilt left"
       ],
-      "prompt": "head tilted slightly to the left, natural gentle neck angle",
+      "prompt": "head tilted left, gentle sideways head angle",
       "stabilizer": "clear head direction, natural neck posture"
     },
     {
@@ -4904,7 +5022,7 @@
       "aliases": [
         "head tilt right"
       ],
-      "prompt": "head tilted slightly to the right, natural gentle neck angle",
+      "prompt": "head tilted right, gentle sideways head angle",
       "stabilizer": "clear head direction, natural neck posture"
     },
     {
@@ -4920,7 +5038,7 @@
       "aliases": [
         "chin up"
       ],
-      "prompt": "chin lifted slightly upward, confident head posture, natural neck extension",
+      "prompt": "chin raised, head angle slightly upward",
       "stabilizer": "clear head direction, natural neck posture"
     },
     {
@@ -4936,7 +5054,7 @@
       "aliases": [
         "chin down"
       ],
-      "prompt": "chin lowered slightly, modest head posture, natural neck bend",
+      "prompt": "chin lowered, head angle slightly downward",
       "stabilizer": "clear head direction, natural neck posture"
     },
     {
@@ -4952,7 +5070,7 @@
       "aliases": [
         "head lean back"
       ],
-      "prompt": "head leaning back strongly, neck extended backward, dramatic upward head posture",
+      "prompt": "head leaning backward, neck extended backward",
       "stabilizer": "clear head direction, natural neck posture"
     }
   ]
