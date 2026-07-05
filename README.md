@@ -1,4 +1,6 @@
-# Krea2 BBOX Pose Preset V1
+![custom_nodes-krea2_bbox_pose](docs/krea2_bbox_pose_preset_v1.png)
+
+# custom_nodes-krea2_bbox_pose
 
 Krea2 BBOX Prompter Suite向けの、ポーズ補助ノードです。BBOX Prompterの `prompt_ui_data` に接続し、選択したポーズ文を対象スロットのプロンプトへ追加します。
 
