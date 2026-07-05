@@ -108,6 +108,7 @@
     ],
     "performance": [
       "Any / 自動",
+      "Body Sign / ボディサイン",
       "Hip-Hop / ヒップホップ",
       "Dance / ダンス",
       "Breakdance / ブレイクダンス",
@@ -290,6 +291,60 @@
         "Cサイン"
       ],
       "prompt": "making a C-shaped hand gesture with the right hand, thumb and fingers curved into a clear C shape",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "l_sign",
+      "display_name": "L Sign / Lサイン",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 6.1,
+      "aliases": [
+        "l sign",
+        "l-shaped hand",
+        "Lサイン"
+      ],
+      "prompt": "making an L-shaped hand gesture with the right hand, thumb extended sideways and index finger extended upward",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "w_sign",
+      "display_name": "W Sign / Wサイン",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 6.2,
+      "aliases": [
+        "w sign",
+        "w-shaped hand",
+        "Wサイン"
+      ],
+      "prompt": "making a W-shaped hand gesture with the right hand, three fingers clearly spread to form a W-like shape",
+      "stabilizer": "hand clearly visible, accurate fingers"
+    },
+    {
+      "id": "i_sign",
+      "display_name": "I Sign / Iサイン",
+      "scope": "hand_expression",
+      "family": "Basic Sign / 基本サイン",
+      "action": "Gesture / サイン",
+      "target": "Hand / 手",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 6.3,
+      "aliases": [
+        "i sign",
+        "single raised index finger",
+        "Iサイン"
+      ],
+      "prompt": "making an I-shaped hand gesture with the right hand, one index finger raised straight upward",
       "stabilizer": "hand clearly visible, accurate fingers"
     },
     {
@@ -1226,6 +1281,24 @@
       ],
       "prompt": "forming a heart shape with both hands in front of the chest",
       "stabilizer": "hands clearly visible, accurate fingers"
+    },
+    {
+      "id": "heart_arms",
+      "display_name": "Heart Arms / ハートアーム",
+      "scope": "hand_expression",
+      "family": "Two Hands / 両手",
+      "action": "Gesture / サイン",
+      "target": "Arm / 腕",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 61.1,
+      "aliases": [
+        "heart arms",
+        "overhead heart arms",
+        "ハートアーム"
+      ],
+      "prompt": "raising both arms overhead and forming a large heart shape with the arms",
+      "stabilizer": "both arms clearly visible, clear upper body pose"
     },
     {
       "id": "cat_paw",
@@ -3976,6 +4049,78 @@
       ],
       "prompt": "backflip pose, body rotating backward in the air, torso arched, legs lifted overhead, dynamic full body acrobatic motion",
       "stabilizer": "clear full body acrobatic pose, natural posture"
+    },
+    {
+      "id": "t_sign_body",
+      "display_name": "T Sign / Tサイン",
+      "scope": "performance",
+      "family": "Body Sign / ボディサイン",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1260,
+      "aliases": [
+        "t sign body",
+        "t pose sign",
+        "Tサイン"
+      ],
+      "prompt": "standing straight with both arms extended horizontally to the sides, body forming a clear T shape",
+      "stabilizer": "full body visible, clear arm silhouette, natural posture"
+    },
+    {
+      "id": "y_sign_body",
+      "display_name": "Y Sign / Yサイン",
+      "scope": "performance",
+      "family": "Body Sign / ボディサイン",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1261,
+      "aliases": [
+        "y sign body",
+        "y pose sign",
+        "Yサイン"
+      ],
+      "prompt": "standing with both arms raised diagonally upward, body forming a clear Y shape",
+      "stabilizer": "full body visible, clear arm silhouette, natural posture"
+    },
+    {
+      "id": "x_sign_body",
+      "display_name": "X Sign / Xサイン",
+      "scope": "performance",
+      "family": "Body Sign / ボディサイン",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1262,
+      "aliases": [
+        "x sign body",
+        "x pose sign",
+        "Xサイン"
+      ],
+      "prompt": "standing with both arms crossed clearly in front of the chest, body forming a clear X-like silhouette",
+      "stabilizer": "full body visible, crossed arms clearly visible, natural posture"
+    },
+    {
+      "id": "o_sign_body",
+      "display_name": "O Sign / Oサイン",
+      "scope": "performance",
+      "family": "Body Sign / ボディサイン",
+      "action": "Performance / 演技",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1263,
+      "aliases": [
+        "o sign body",
+        "o pose sign",
+        "Oサイン"
+      ],
+      "prompt": "standing with both arms raised overhead in a rounded circle, body forming a clear O shape",
+      "stabilizer": "full body visible, both arms clearly visible, natural posture"
     },
     {
       "id": "front_split",

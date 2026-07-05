@@ -53,8 +53,16 @@ def test_all_categories_have_options():
         assert len(PRESETS_BY_CATEGORY_DISPLAY[category]) > 0
     assert len(PRESETS) >= 160
 
+def test_sign_presets_are_in_expected_categories():
+    for preset_id in ["l_sign", "w_sign", "i_sign"]:
+        assert preset_label("right_hand", preset_id)
+        assert preset_label("left_hand", preset_id)
+    assert preset_label("arm", "heart_arms")
+    for preset_id in ["t_sign_body", "y_sign_body", "x_sign_body", "o_sign_body"]:
+        assert preset_label("performance", preset_id)
+
 if __name__ == "__main__":
-    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); print("ok")
+    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); print("ok")
 
 
 def test_custom_auto_is_ignored():
