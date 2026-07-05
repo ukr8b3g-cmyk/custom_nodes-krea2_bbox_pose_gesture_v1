@@ -2958,6 +2958,91 @@
       "stabilizer": "clear upper body pose, natural posture"
     },
     {
+      "id": "deep_forward_bend",
+      "display_name": "Deep Forward Bend / 深い前屈み",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Bend / 曲げる",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 97,
+      "aliases": [
+        "deep forward bend",
+        "deep forward torso bend"
+      ],
+      "prompt": "deep forward torso bend, upper body leaning strongly forward, almost folded at the waist",
+      "stabilizer": "clear torso pose, natural body balance"
+    },
+    {
+      "id": "deep_back_arch",
+      "display_name": "Deep Back Arch / 大きく反る",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Arch / 反る",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 98,
+      "aliases": [
+        "deep back arch",
+        "deep backward arch"
+      ],
+      "prompt": "deep backward torso arch, chest lifted upward, upper body arched strongly backward",
+      "stabilizer": "clear torso pose, natural body balance"
+    },
+    {
+      "id": "strong_torso_twist",
+      "display_name": "Strong Torso Twist / 大きくひねる",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Twist / ひねり",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 99,
+      "aliases": [
+        "strong torso twist",
+        "deep torso twist"
+      ],
+      "prompt": "strong torso twist, upper body rotated clearly away from the hips",
+      "stabilizer": "clear torso pose, natural body balance"
+    },
+    {
+      "id": "right_side_lean",
+      "display_name": "Right Side Lean / 右へ大きく倒す",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Lean / 傾き",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 100,
+      "aliases": [
+        "right side lean",
+        "leaning strongly to the right"
+      ],
+      "prompt": "strong right side torso lean, upper body tilted clearly to the right from the waist",
+      "stabilizer": "clear torso pose, natural body balance"
+    },
+    {
+      "id": "left_side_lean",
+      "display_name": "Left Side Lean / 左へ大きく倒す",
+      "scope": "upper_body",
+      "family": "Torso / 胴体",
+      "action": "Lean / 傾き",
+      "target": "Torso / 胴体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 101,
+      "aliases": [
+        "left side lean",
+        "leaning strongly to the left"
+      ],
+      "prompt": "strong left side torso lean, upper body tilted clearly to the left from the waist",
+      "stabilizer": "clear torso pose, natural body balance"
+    },
+    {
       "id": "demure_standing",
       "display_name": "Demure Standing / 控えめ立ち",
       "scope": "full_body",
@@ -3086,22 +3171,6 @@
       "stabilizer": "clear leg placement, natural posture"
     },
     {
-      "id": "arabesque_leg",
-      "display_name": "Arabesque Leg / アラベスク風の脚",
-      "scope": "lower_body",
-      "family": "Ballet / バレエ風",
-      "action": "Extend / 伸ばす",
-      "target": "Leg / 脚",
-      "gender": "unisex",
-      "reliability": "standard",
-      "priority": 129,
-      "aliases": [
-        "arabesque leg"
-      ],
-      "prompt": "extending one leg backward in an arabesque-like pose",
-      "stabilizer": "clear leg placement, natural posture"
-    },
-    {
       "id": "ballet_side_extension",
       "display_name": "Ballet Side Extension / 横へ大きく脚を伸ばす",
       "scope": "lower_body",
@@ -3227,6 +3296,39 @@
         "crossed ankles"
       ],
       "prompt": "standing with the ankles lightly crossed",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "crossed_legs",
+      "display_name": "Crossed Legs / 脚をクロス",
+      "scope": "lower_body",
+      "family": "Leg Placement / 脚の配置",
+      "action": "Cross / 交差",
+      "target": "Legs / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 137.1,
+      "aliases": [
+        "crossed legs"
+      ],
+      "prompt": "standing with legs crossed, one leg placed across the other, elegant crossed-leg lower body pose",
+      "stabilizer": "clear leg placement, natural posture"
+    },
+    {
+      "id": "knees_together_feet_apart",
+      "display_name": "Knees Together Feet Apart / 膝を寄せて足先を開く",
+      "scope": "lower_body",
+      "family": "Leg Placement / 脚の配置",
+      "action": "Inward / 内股",
+      "target": "Legs / 脚",
+      "gender": "unisex",
+      "reliability": "standard",
+      "priority": 137.2,
+      "aliases": [
+        "knees together feet apart",
+        "inward knees feet apart"
+      ],
+      "prompt": "knees close together, feet apart, toes turned inward, shy inward-knee stance, clear lower body pose",
       "stabilizer": "clear leg placement, natural posture"
     },
     {
@@ -3435,6 +3537,152 @@
         "relaxed side lying"
       ],
       "prompt": "lying on the side with the legs slightly bent in a relaxed pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "deep_squat",
+      "display_name": "Deep Squat / 深いしゃがみ",
+      "scope": "sitting_lying",
+      "family": "Squat / しゃがみ",
+      "action": "Squat / しゃがむ",
+      "target": "Lower Body / 下半身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 125,
+      "aliases": [
+        "deep squat"
+      ],
+      "prompt": "deep squat pose, hips low, knees deeply bent, balanced lower body",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "street_squat",
+      "display_name": "Street Squat / ストリートしゃがみ",
+      "scope": "sitting_lying",
+      "family": "Squat / しゃがみ",
+      "action": "Squat / しゃがむ",
+      "target": "Lower Body / 下半身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 126,
+      "aliases": [
+        "street squat"
+      ],
+      "prompt": "deep street-style squat, heels on the ground, elbows resting near the knees, relaxed low squat posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "low_lunge_kneel",
+      "display_name": "Low Lunge Kneel / 低い片膝ランジ",
+      "scope": "sitting_lying",
+      "family": "Kneeling / 膝立ち",
+      "action": "Lunge / ランジ",
+      "target": "Lower Body / 下半身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 127,
+      "aliases": [
+        "low lunge kneel",
+        "low kneeling lunge"
+      ],
+      "prompt": "low kneeling lunge, one knee on the floor, front knee bent deeply, hips lowered",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "kneel_leg_back",
+      "display_name": "Kneel Leg Back / 片膝で後ろ脚伸ばし",
+      "scope": "sitting_lying",
+      "family": "Kneeling / 膝立ち",
+      "action": "Extend / 伸ばす",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 128,
+      "aliases": [
+        "kneel leg back",
+        "kneeling with rear leg extended"
+      ],
+      "prompt": "one knee on the ground, opposite leg stretched backward, low lunge kneeling pose, long lower body line",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "sitting_backwards",
+      "display_name": "Sitting Backwards / 後ろ向き座り",
+      "scope": "sitting_lying",
+      "family": "Sitting / 座り",
+      "action": "Sit / 座る",
+      "target": "Chair / 椅子",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 129,
+      "aliases": [
+        "sitting backwards"
+      ],
+      "prompt": "sitting backwards on a chair, torso facing over the chair back, relaxed seated posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "butterfly_sitting",
+      "display_name": "Butterfly Sitting / バタフライ座り",
+      "scope": "sitting_lying",
+      "family": "Sitting / 座り",
+      "action": "Sit / 座る",
+      "target": "Floor / 床",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 130,
+      "aliases": [
+        "butterfly sitting"
+      ],
+      "prompt": "sitting on the floor with the soles of the feet together, knees opened outward in a butterfly seated pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "legs_forward_sitting",
+      "display_name": "Legs Forward Sitting / 足を前に投げ出す",
+      "scope": "sitting_lying",
+      "family": "Sitting / 座り",
+      "action": "Sit / 座る",
+      "target": "Floor / 床",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 131,
+      "aliases": [
+        "legs forward sitting"
+      ],
+      "prompt": "sitting on the floor with both legs stretched forward, relaxed straight-leg seated pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "casual_floor_sitting",
+      "display_name": "Casual Floor Sitting / ラフな床座り",
+      "scope": "sitting_lying",
+      "family": "Sitting / 座り",
+      "action": "Sit / 座る",
+      "target": "Floor / 床",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 132,
+      "aliases": [
+        "casual floor sitting"
+      ],
+      "prompt": "casual floor sitting pose, one knee bent loosely, relaxed uneven leg placement",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "back_lean_sitting",
+      "display_name": "Back Lean Sitting / 後ろ手にもたれる座り",
+      "scope": "sitting_lying",
+      "family": "Sitting / 座り",
+      "action": "Lean / もたれる",
+      "target": "Floor / 床",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 133,
+      "aliases": [
+        "back lean sitting"
+      ],
+      "prompt": "sitting on the floor while leaning back on both hands, relaxed supported seated pose",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
@@ -4121,6 +4369,91 @@
       ],
       "prompt": "standing with both arms raised overhead in a rounded circle, body forming a clear O shape",
       "stabilizer": "full body visible, both arms clearly visible, natural posture"
+    },
+    {
+      "id": "classic_pinup",
+      "display_name": "Classic Pin-Up / 定番ピンアップ",
+      "scope": "performance",
+      "family": "Pin-Up / ピンアップ",
+      "action": "Pose / ポーズ",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1264,
+      "aliases": [
+        "classic pin-up",
+        "classic pinup"
+      ],
+      "prompt": "classic vintage pin-up pose, playful standing posture, one knee slightly bent, elegant adult model pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "hand_on_hip_pinup",
+      "display_name": "Hand on Hip Pin-Up / 腰に手ピンアップ",
+      "scope": "performance",
+      "family": "Pin-Up / ピンアップ",
+      "action": "Pose / ポーズ",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1265,
+      "aliases": [
+        "hand on hip pin-up",
+        "hand on hip pinup"
+      ],
+      "prompt": "vintage pin-up pose, one hand on hip, hip slightly tilted, confident playful adult model stance",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "over_shoulder_pinup",
+      "display_name": "Over Shoulder Pin-Up / 振り向きピンアップ",
+      "scope": "performance",
+      "family": "Pin-Up / ピンアップ",
+      "action": "Pose / ポーズ",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1266,
+      "aliases": [
+        "over shoulder pin-up",
+        "over shoulder pinup"
+      ],
+      "prompt": "classic pin-up pose, looking back over the shoulder, body turned slightly, elegant curved posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "one_leg_lift_pinup",
+      "display_name": "One Leg Lift Pin-Up / 片脚上げピンアップ",
+      "scope": "performance",
+      "family": "Pin-Up / ピンアップ",
+      "action": "Pose / ポーズ",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1267,
+      "aliases": [
+        "one leg lift pin-up",
+        "one leg lift pinup"
+      ],
+      "prompt": "playful pin-up pose, one leg lifted backward with bent knee, balanced standing posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "seated_pinup",
+      "display_name": "Seated Pin-Up / 座りピンアップ",
+      "scope": "performance",
+      "family": "Pin-Up / ピンアップ",
+      "action": "Pose / ポーズ",
+      "target": "Whole Body / 全身",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 1268,
+      "aliases": [
+        "seated pin-up",
+        "seated pinup"
+      ],
+      "prompt": "classic seated pin-up pose, legs angled to one side, upright torso, elegant adult model posture",
+      "stabilizer": "full body visible, clear seated body pose, natural posture"
     },
     {
       "id": "front_split",

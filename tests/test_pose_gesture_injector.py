@@ -61,8 +61,25 @@ def test_sign_presets_are_in_expected_categories():
     for preset_id in ["t_sign_body", "y_sign_body", "x_sign_body", "o_sign_body"]:
         assert preset_label("performance", preset_id)
 
+def test_torso_and_lower_body_recent_presets():
+    for preset_id in ["deep_forward_bend", "deep_back_arch", "strong_torso_twist", "right_side_lean", "left_side_lean"]:
+        assert preset_label("torso", preset_id)
+    for preset_id in ["crossed_legs", "knees_together_feet_apart", "ballet_arabesque_legs"]:
+        assert preset_label("lower_body", preset_id)
+    for preset_id in ["deep_squat", "street_squat", "low_lunge_kneel", "kneel_leg_back", "sitting_backwards", "butterfly_sitting", "legs_forward_sitting", "casual_floor_sitting", "back_lean_sitting"]:
+        assert preset_label("sitting_lying", preset_id)
+    arabesque_labels = [
+        label for label, preset in PRESETS_BY_CATEGORY_DISPLAY["lower_body"].items()
+        if "Arabesque" in label or "アラベスク" in label
+    ]
+    assert arabesque_labels == ["Ballet Arabesque Legs / アラベスク脚"]
+
+def test_pinup_presets_are_in_performance():
+    for preset_id in ["classic_pinup", "hand_on_hip_pinup", "over_shoulder_pinup", "one_leg_lift_pinup", "seated_pinup"]:
+        assert preset_label("performance", preset_id)
+
 if __name__ == "__main__":
-    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); print("ok")
+    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); test_torso_and_lower_body_recent_presets(); test_pinup_presets_are_in_performance(); print("ok")
 
 
 def test_custom_auto_is_ignored():
