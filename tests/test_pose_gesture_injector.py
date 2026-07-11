@@ -78,8 +78,18 @@ def test_pinup_presets_are_in_performance():
     for preset_id in ["classic_pinup", "hand_on_hip_pinup", "over_shoulder_pinup", "one_leg_lift_pinup", "seated_pinup"]:
         assert preset_label("performance", preset_id)
 
+def test_new_lying_presets_generate_prompt_text():
+    node=Krea2BBOXPoseGestureInjectorV1()
+    preset_ids=["prone_both_knees_bent","supine_both_knees_raised","side_legs_extended","ankles_crossed_lying","diagonal_reclining"]
+    for preset_id in preset_ids:
+        label=preset_label("sitting_lying",preset_id)
+        out,pose,debug=call(node,sample_data(),sitting_lying_preset=label)
+        assert pose
+        assert pose in json.loads(out)["slots"]["red"]["prompt"]
+        assert "hand" not in pose.lower()
+
 if __name__ == "__main__":
-    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); test_torso_and_lower_body_recent_presets(); test_pinup_presets_are_in_performance(); print("ok")
+    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); test_torso_and_lower_body_recent_presets(); test_pinup_presets_are_in_performance(); test_new_lying_presets_generate_prompt_text(); print("ok")
 
 
 def test_custom_auto_is_ignored():

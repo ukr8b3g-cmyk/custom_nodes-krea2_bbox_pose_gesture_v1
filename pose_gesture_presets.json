@@ -3766,6 +3766,86 @@
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {
+      "id": "prone_both_knees_bent",
+      "display_name": "Prone Knees Bent / うつ伏せ両膝曲げ",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Bend / 曲げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 139,
+      "aliases": [
+        "prone knees bent"
+      ],
+      "prompt": "lying on the stomach with both knees bent and lower legs raised, relaxed prone body line",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "supine_both_knees_raised",
+      "display_name": "Supine Knees Raised / 仰向け両膝立て",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Bend / 曲げる",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 140,
+      "aliases": [
+        "supine knees raised"
+      ],
+      "prompt": "lying on the back with both knees bent and raised, relaxed grounded resting pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "side_legs_extended",
+      "display_name": "Side Legs Extended / 横向き脚伸ばし",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Extend / 伸ばす",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 141,
+      "aliases": [
+        "side legs extended"
+      ],
+      "prompt": "lying on the side with both legs extended, long relaxed side body line",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "ankles_crossed_lying",
+      "display_name": "Ankles Crossed Lying / 足首クロス仰向け",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Cross / 交差",
+      "target": "Leg / 脚",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 142,
+      "aliases": [
+        "ankles crossed lying"
+      ],
+      "prompt": "lying on the back with both legs extended and ankles crossed, relaxed composed resting pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "diagonal_reclining",
+      "display_name": "Diagonal Reclining / 斜め寝そべり",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Recline / 寝そべる",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 143,
+      "aliases": [
+        "diagonal reclining"
+      ],
+      "prompt": "reclining diagonally across the surface, elongated relaxed body line, calm resting posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
       "id": "pair_side_hug",
       "display_name": "Side Hug / 横からハグ",
       "scope": "pair",
