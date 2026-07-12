@@ -99,6 +99,8 @@ HEAD_PRESET_OPTIONS=_setup_category('head',lambda p:_clean(p.get('scope'))=='hea
 RIGHT_HAND_PRESET_OPTIONS=_setup_category('right_hand',lambda p:_clean(p.get('scope'))=='hand_expression' and not _is_two_hand_preset(p))
 LEFT_HAND_PRESET_OPTIONS=_setup_category('left_hand',lambda p:_clean(p.get('scope'))=='hand_expression' and not _is_two_hand_preset(p))
 SITTING_LYING_PRESET_OPTIONS=_setup_category('sitting_lying',lambda p:_clean(p.get('scope'))=='sitting_lying')
+SITTING_PRESET_OPTIONS=_setup_category('sitting',lambda p:_clean(p.get('scope'))=='sitting_lying' and _clean(p.get('family'))!='Lying / 寝そべり')
+LYING_PRESET_OPTIONS=_setup_category('lying',lambda p:_clean(p.get('scope'))=='sitting_lying' and _clean(p.get('family'))=='Lying / 寝そべり')
 LOWER_BODY_PRESET_OPTIONS=_setup_category('lower_body',lambda p:_clean(p.get('scope'))=='lower_body')
 PERFORMANCE_PRESET_OPTIONS=_setup_category('performance',lambda p:_clean(p.get('scope'))=='performance')
 PAIR_PRESET_OPTIONS=_setup_category('pair',lambda p:_clean(p.get('scope'))=='pair')
@@ -134,7 +136,7 @@ def _node_result(data:Any,pose_text:str,debug_text:str):
 def _selected_preset(category_id:str,display:str)->Optional[Dict[str,Any]]:
     display=_clean(display)
     return None if (not display or display==NONE_OPTION) else PRESETS_BY_CATEGORY_DISPLAY.get(category_id,{}).get(display)
-def _build_pose_text(base_pose_preset,arm_preset,right_hand_preset,left_hand_preset,torso_preset,lower_body_preset,sitting_lying_preset,performance_preset,pair_preset,strength,custom_add_on,stabilizer,gaze_preset=NONE_OPTION,head_preset=NONE_OPTION):
+def _build_pose_text(base_pose_preset,arm_preset,right_hand_preset,left_hand_preset,torso_preset,lower_body_preset,sitting_lying_preset,performance_preset,pair_preset,strength,custom_add_on,stabilizer,gaze_preset=NONE_OPTION,head_preset=NONE_OPTION,sitting_preset=NONE_OPTION,lying_preset=NONE_OPTION):
     warnings=[]; selected_meta=[]; parts=[]; selected_presets=[]
     base_p=_selected_preset('base_pose',base_pose_preset)
     arm_p=_selected_preset('arm',arm_preset)
@@ -143,13 +145,19 @@ def _build_pose_text(base_pose_preset,arm_preset,right_hand_preset,left_hand_pre
     head_p=_selected_preset('head',head_preset)
     right_p=_selected_preset('right_hand',right_hand_preset)
     left_p=_selected_preset('left_hand',left_hand_preset)
-    sit_p=_selected_preset('sitting_lying',sitting_lying_preset)
+    legacy_pose_p=_selected_preset('sitting_lying',sitting_lying_preset)
+    sitting_p=_selected_preset('sitting',sitting_preset)
+    lying_p=_selected_preset('lying',lying_preset)
     lower_p=_selected_preset('lower_body',lower_body_preset)
     perf_p=_selected_preset('performance',performance_preset)
     pair_p=_selected_preset('pair',pair_preset)
-    if sit_p and base_p: warnings.append('Base Pose was ignored because Sitting / Lying is selected.'); base_p=None
-    if sit_p and lower_p: warnings.append('Lower Body was ignored because Sitting / Lying is selected.'); lower_p=None
-    ordered=[('Base Pose',base_p,None),('Hands',arm_p,None),('Right Hand',right_p,'right'),('Left Hand',left_p,'left'),('Torso',torso_p,None),('Gaze',gaze_p,None),('Head',head_p,None),('Lower Body',lower_p,None),('Sitting / Lying',sit_p,None),('Performance',perf_p,None),('Pair',pair_p,None)]
+    if lying_p and sitting_p: warnings.append('Sitting Preset was ignored because Lying Preset is selected.'); sitting_p=None
+    if (lying_p or sitting_p) and legacy_pose_p: warnings.append('Legacy Sitting / Lying Preset was ignored because a new pose preset is selected.'); legacy_pose_p=None
+    body_pose_p=lying_p or sitting_p or legacy_pose_p
+    body_pose_name='Lying' if lying_p else ('Sitting' if sitting_p else 'Sitting / Lying')
+    if body_pose_p and base_p: warnings.append('Base Pose was ignored because Sitting or Lying is selected.'); base_p=None
+    if body_pose_p and lower_p: warnings.append('Lower Body was ignored because Sitting or Lying is selected.'); lower_p=None
+    ordered=[('Base Pose',base_p,None),('Hands',arm_p,None),('Right Hand',right_p,'right'),('Left Hand',left_p,'left'),('Torso',torso_p,None),('Gaze',gaze_p,None),('Head',head_p,None),('Lower Body',lower_p,None),(body_pose_name,body_pose_p,None),('Performance',perf_p,None),('Pair',pair_p,None)]
     for channel_name,preset,hand_side in ordered:
         if not preset:continue
         prompt=_clean(preset.get('prompt'))
@@ -198,17 +206,19 @@ class Krea2BBOXPoseGestureInjectorV1:
             'strength':(STRENGTH_OPTIONS,{'default':'Natural'}),
             'stabilizer':(STABILIZER_OPTIONS,{'default':NONE_OPTION}),
             'merge_style':(MERGE_STYLE_OPTIONS,{'default':'Comma'}),
+            'sitting_preset':(SITTING_PRESET_OPTIONS,{'default':NONE_OPTION}),
+            'lying_preset':(LYING_PRESET_OPTIONS,{'default':NONE_OPTION}),
         }}
     RETURN_TYPES=('KREA2_ELEMENT_PROMPT_DATA','STRING','STRING')
     RETURN_NAMES=('prompt_ui_data','pose_text','debug_text')
     FUNCTION='execute'; CATEGORY='Krea2/BBOX Prompter Suite'
-    def execute(self,prompt_ui_data,enable_pose_preset,target_slot,human_type,base_pose_preset,arm_preset,right_hand_preset,left_hand_preset,torso_preset,lower_body_preset,sitting_lying_preset,performance_preset,pair_preset,strength,stabilizer,merge_style,custom_add_on='',gaze_preset=NONE_OPTION,head_preset=NONE_OPTION):
+    def execute(self,prompt_ui_data,enable_pose_preset,target_slot,human_type,base_pose_preset,arm_preset,right_hand_preset,left_hand_preset,torso_preset,lower_body_preset,sitting_lying_preset,performance_preset,pair_preset,strength,stabilizer,merge_style,sitting_preset=NONE_OPTION,lying_preset=NONE_OPTION,custom_add_on='',gaze_preset=NONE_OPTION,head_preset=NONE_OPTION):
         data=_safe_json_loads(prompt_ui_data)
         if not isinstance(data,dict):return _node_result(prompt_ui_data,'','Invalid prompt_ui_data. Connect after Krea2 BBOX Prompter.')
         if not _as_bool(enable_pose_preset):return _node_result(data,'','Pose preset disabled. Output passed through unchanged.')
         slots=_get_slots(data)
         if not slots:return _node_result(data,'','No slots found in prompt_ui_data. Expected Krea2 BBOX Prompter output.')
-        pose_text,selected_meta,warning=_build_pose_text(base_pose_preset,arm_preset,right_hand_preset,left_hand_preset,torso_preset,lower_body_preset,sitting_lying_preset,performance_preset,pair_preset,strength,custom_add_on,stabilizer,gaze_preset,head_preset)
+        pose_text,selected_meta,warning=_build_pose_text(base_pose_preset,arm_preset,right_hand_preset,left_hand_preset,torso_preset,lower_body_preset,sitting_lying_preset,performance_preset,pair_preset,strength,custom_add_on,stabilizer,gaze_preset,head_preset,sitting_preset,lying_preset)
         if not pose_text:return _node_result(data,'',f'No pose text generated. {warning}'.strip())
         targets=_target_slots(slots,target_slot,human_type); changed=[]; skipped=[]; explicit_slot=target_slot not in ('Auto first human','All human slots')
         for slot_name in targets:

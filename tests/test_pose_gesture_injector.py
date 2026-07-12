@@ -13,7 +13,7 @@ def preset_label(category_id, preset_id):
     raise AssertionError(f"missing preset {category_id}:{preset_id}")
 
 def call(node, data, **overrides):
-    args=dict(prompt_ui_data=json.dumps(data,ensure_ascii=False),enable_pose_preset=True,target_slot="RED slot",human_type="Unisex",base_pose_preset=NONE_OPTION,arm_preset=NONE_OPTION,torso_preset=NONE_OPTION,right_hand_preset=NONE_OPTION,left_hand_preset=NONE_OPTION,sitting_lying_preset=NONE_OPTION,lower_body_preset=NONE_OPTION,performance_preset=NONE_OPTION,pair_preset=NONE_OPTION,strength="Natural",custom_add_on="",stabilizer=NONE_OPTION,merge_style="Comma")
+    args=dict(prompt_ui_data=json.dumps(data,ensure_ascii=False),enable_pose_preset=True,target_slot="RED slot",human_type="Unisex",base_pose_preset=NONE_OPTION,arm_preset=NONE_OPTION,torso_preset=NONE_OPTION,right_hand_preset=NONE_OPTION,left_hand_preset=NONE_OPTION,sitting_lying_preset=NONE_OPTION,sitting_preset=NONE_OPTION,lying_preset=NONE_OPTION,lower_body_preset=NONE_OPTION,performance_preset=NONE_OPTION,pair_preset=NONE_OPTION,strength="Natural",custom_add_on="",stabilizer=NONE_OPTION,merge_style="Comma")
     args.update(overrides)
     result=node.execute(**args)
     return result["result"] if isinstance(result,dict) else result
@@ -28,7 +28,7 @@ def test_combine_multiple_channels():
 
 def test_sitting_overrides_base_and_lower_body():
     node=Krea2BBOXPoseGestureInjectorV1()
-    out,pose,debug=call(node,sample_data(),base_pose_preset=preset_label("base_pose","neutral_standing"),sitting_lying_preset=preset_label("sitting_lying","seiza"),lower_body_preset=preset_label("lower_body","wide_stance"))
+    out,pose,debug=call(node,sample_data(),base_pose_preset=preset_label("base_pose","neutral_standing"),sitting_preset=preset_label("sitting","seiza"),lower_body_preset=preset_label("lower_body","wide_stance"))
     assert "seiza pose" in pose
     assert "standing naturally" not in pose
     assert "feet apart" not in pose
@@ -49,7 +49,7 @@ def test_explicit_slot_always_applies():
     assert "standing naturally" in parsed["slots"]["red"]["prompt"]
 
 def test_all_categories_have_options():
-    for category in ["base_pose","arm","torso","gaze","head","right_hand","left_hand","sitting_lying","lower_body","performance","pair"]:
+    for category in ["base_pose","arm","torso","gaze","head","right_hand","left_hand","sitting_lying","sitting","lying","lower_body","performance","pair"]:
         assert len(PRESETS_BY_CATEGORY_DISPLAY[category]) > 0
     assert len(PRESETS) >= 160
 
@@ -67,7 +67,7 @@ def test_torso_and_lower_body_recent_presets():
     for preset_id in ["crossed_legs", "knees_together_feet_apart", "ballet_arabesque_legs"]:
         assert preset_label("lower_body", preset_id)
     for preset_id in ["deep_squat", "street_squat", "low_lunge_kneel", "kneel_leg_back", "sitting_backwards", "butterfly_sitting", "legs_forward_sitting", "casual_floor_sitting", "back_lean_sitting"]:
-        assert preset_label("sitting_lying", preset_id)
+        assert preset_label("sitting", preset_id)
     arabesque_labels = [
         label for label, preset in PRESETS_BY_CATEGORY_DISPLAY["lower_body"].items()
         if "Arabesque" in label or "アラベスク" in label
@@ -80,16 +80,41 @@ def test_pinup_presets_are_in_performance():
 
 def test_new_lying_presets_generate_prompt_text():
     node=Krea2BBOXPoseGestureInjectorV1()
-    preset_ids=["prone_both_knees_bent","supine_both_knees_raised","side_legs_extended","ankles_crossed_lying","diagonal_reclining"]
+    preset_ids=["prone_both_knees_bent","supine_both_knees_raised","side_legs_extended","ankles_crossed_lying","diagonal_reclining","pinup_knee_drop","pinup_back_arch_lying","mermaid_side_recline","prone_crossed_ankles","pinup_hip_twist_lying"]
     for preset_id in preset_ids:
-        label=preset_label("sitting_lying",preset_id)
-        out,pose,debug=call(node,sample_data(),sitting_lying_preset=label)
+        label=preset_label("lying",preset_id)
+        out,pose,debug=call(node,sample_data(),lying_preset=label)
         assert pose
         assert pose in json.loads(out)["slots"]["red"]["prompt"]
         assert "hand" not in pose.lower()
 
+def test_split_pose_categories_and_legacy_compatibility():
+    assert len(PRESETS_BY_CATEGORY_DISPLAY["sitting"]) == 27
+    assert len(PRESETS_BY_CATEGORY_DISPLAY["lying"]) == 19
+    required=list(Krea2BBOXPoseGestureInjectorV1.INPUT_TYPES()["required"])
+    assert required.index("sitting_lying_preset") < required.index("strength")
+    assert required[-2:] == ["sitting_preset", "lying_preset"]
+    node=Krea2BBOXPoseGestureInjectorV1()
+    legacy=preset_label("sitting_lying","lying_back")
+    out,pose,debug=call(node,sample_data(),sitting_lying_preset=legacy)
+    assert "lying on the back" in pose
+    sitting=preset_label("sitting","seiza")
+    lying=preset_label("lying","pinup_knee_drop")
+    out,pose,debug=call(node,sample_data(),sitting_preset=sitting,lying_preset=lying)
+    assert "knees bent and lowered together" in pose
+    assert "seiza" not in pose
+    assert "ignored" in debug.lower()
+
+def test_all_split_pose_presets_reach_final_output():
+    node=Krea2BBOXPoseGestureInjectorV1()
+    for category, field in [("sitting", "sitting_preset"), ("lying", "lying_preset")]:
+        for label, preset in PRESETS_BY_CATEGORY_DISPLAY[category].items():
+            out,pose,debug=call(node,sample_data(),**{field:label})
+            assert pose == preset["prompt"]
+            assert pose in json.loads(out)["slots"]["red"]["prompt"]
+
 if __name__ == "__main__":
-    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); test_torso_and_lower_body_recent_presets(); test_pinup_presets_are_in_performance(); test_new_lying_presets_generate_prompt_text(); print("ok")
+    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); test_torso_and_lower_body_recent_presets(); test_pinup_presets_are_in_performance(); test_new_lying_presets_generate_prompt_text(); test_split_pose_categories_and_legacy_compatibility(); test_all_split_pose_presets_reach_final_output(); print("ok")
 
 
 def test_custom_auto_is_ignored():

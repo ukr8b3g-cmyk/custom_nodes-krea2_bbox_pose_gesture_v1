@@ -1,5 +1,5 @@
 {
-  "version": "composable_best_plus_lower_sitting_v2",
+  "version": "composable_best_split_sitting_lying_v3",
   "node_scope": "Krea2 BBOX optional human pose/gesture injector only. Not a general prompt manager.",
   "ui_policy": {
     "default_scope": "hand_expression",
@@ -3843,6 +3843,91 @@
         "diagonal reclining"
       ],
       "prompt": "reclining diagonally across the surface, elongated relaxed body line, calm resting posture",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "pinup_knee_drop",
+      "display_name": "Pin-up Knee Drop / ピンアップ膝倒し",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Recline / 寝そべる",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 144,
+      "aliases": [
+        "pin-up knee drop",
+        "supine knee drop"
+      ],
+      "prompt": "lying on the back with both knees bent and lowered together to one side, hips gently twisted, elegant pin-up body line",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "pinup_back_arch_lying",
+      "display_name": "Pin-up Back Arch / ピンアップ仰向け反り",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Recline / 寝そべる",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 145,
+      "aliases": [
+        "pin-up back arch",
+        "arched supine pose"
+      ],
+      "prompt": "lying on the back with a gentle back arch, hips slightly angled, legs extended in a confident classic pin-up pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "mermaid_side_recline",
+      "display_name": "Mermaid Side Recline / マーメイド横寝",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Recline / 寝そべる",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 146,
+      "aliases": [
+        "mermaid side recline",
+        "curved side recline"
+      ],
+      "prompt": "reclining on one side with both legs swept together, elegant curved body line, graceful model-like pose",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "prone_crossed_ankles",
+      "display_name": "Prone Crossed Ankles / うつ伏せ足首クロス",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Recline / 寝そべる",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 147,
+      "aliases": [
+        "prone crossed ankles",
+        "stomach lying ankles crossed"
+      ],
+      "prompt": "lying on the stomach with the lower legs raised and ankles crossed, playful posed silhouette",
+      "stabilizer": "full body visible, clear body pose, natural posture"
+    },
+    {
+      "id": "pinup_hip_twist_lying",
+      "display_name": "Pin-up Hip Twist / ピンアップ腰ひねり",
+      "scope": "sitting_lying",
+      "family": "Lying / 寝そべり",
+      "action": "Recline / 寝そべる",
+      "target": "Body / 体",
+      "gender": "unisex",
+      "reliability": "medium",
+      "priority": 148,
+      "aliases": [
+        "pin-up hip twist",
+        "reclining hip twist"
+      ],
+      "prompt": "reclining with the hips strongly angled away from the upper torso, one leg extended and the other softly bent, dramatic pin-up pose",
       "stabilizer": "full body visible, clear body pose, natural posture"
     },
     {

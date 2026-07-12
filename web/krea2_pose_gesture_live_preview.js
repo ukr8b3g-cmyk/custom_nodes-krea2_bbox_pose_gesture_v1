@@ -8,6 +8,8 @@ const PREVIEW_HEIGHT_PROP = "k2pg_prompt_preview_height";
 const PREVIEW_MIN_HEIGHT = 76;
 const PREVIEW_MAX_HEIGHT = 240;
 const ACCORDION_STATE_PROP = "k2pg_accordion_state";
+const NODE_SIZE_PROP = "k2pg_node_size";
+const DEFAULT_NODE_SIZE = [330, 800];
 const ACCORDION_SECTIONS = [
   {
     id: "basic",
@@ -26,14 +28,15 @@ const ACCORDION_SECTIONS = [
     fields: [
       ["base_pose_preset", "Base Pose / 基本姿勢"],
       ["performance_preset", "Performance / 定型ポーズ"],
-      ["sitting_lying_preset", "Sitting & Lying / 座り・寝そべり"],
+      ["sitting_preset", "Sitting / 座り"],
+      ["lying_preset", "Lying / 寝そべり"],
       ["pair_preset", "Pair / 2人"],
     ],
   },
   {
     id: "body",
     title: "Body / 身体調整",
-    open: false,
+    open: true,
     fields: [
       ["torso_preset", "Torso / 胴体"],
       ["lower_body_preset", "Lower Body / 下半身"],
@@ -43,7 +46,7 @@ const ACCORDION_SECTIONS = [
   {
     id: "hands_direction",
     title: "Hands & Direction / 手・方向",
-    open: false,
+    open: true,
     fields: [
       ["right_hand_preset", "Right Hand / 右手"],
       ["left_hand_preset", "Left Hand / 左手"],
@@ -54,7 +57,7 @@ const ACCORDION_SECTIONS = [
   {
     id: "advanced",
     title: "Advanced / 詳細設定",
-    open: false,
+    open: true,
     fields: [
       ["strength", "Strength / 強さ"],
       ["stabilizer", "Stabilizer / 補強"],
@@ -72,9 +75,12 @@ const FIELD_CATEGORIES = {
   head_preset: "head",
   lower_body_preset: "lower_body",
   sitting_lying_preset: "sitting_lying",
+  sitting_preset: "sitting",
+  lying_preset: "lying",
   performance_preset: "performance",
   pair_preset: "pair",
 };
+const LEGACY_HIDDEN_FIELDS = ["sitting_lying_preset"];
 
 let presetPayloadPromise = null;
 
@@ -116,6 +122,27 @@ function widgetValue(node, name, fallback = "") {
 function widgetOptions(w) {
   const values = typeof w?.options?.values === "function" ? w.options.values() : w?.options?.values;
   return Array.isArray(values) ? values : [w?.value ?? ""];
+}
+
+function hasPresetValue(value) {
+  const text = clean(value);
+  return Boolean(text && text !== NONE_OPTION);
+}
+
+function migrateLegacyPoseSelection(node) {
+  const legacy = widget(node, "sitting_lying_preset");
+  if (!legacy || !hasPresetValue(legacy.value)) return;
+  const sitting = widget(node, "sitting_preset");
+  const lying = widget(node, "lying_preset");
+  if (hasPresetValue(sitting?.value) || hasPresetValue(lying?.value)) {
+    legacy.value = NONE_OPTION;
+    return;
+  }
+  const legacyValue = String(legacy.value);
+  const target = widgetOptions(lying).map(String).includes(legacyValue) ? lying : sitting;
+  if (!target || !widgetOptions(target).map(String).includes(legacyValue)) return;
+  target.value = legacyValue;
+  legacy.value = NONE_OPTION;
 }
 
 function setWidgetValue(node, name, value) {
@@ -172,8 +199,23 @@ function previewHeight(node) {
   return Math.max(PREVIEW_MIN_HEIGHT, Math.min(PREVIEW_MAX_HEIGHT, Math.round(raw)));
 }
 
+function normalizeNodeSize(value) {
+  if (!Array.isArray(value) || value.length < 2) return null;
+  const width = Math.round(Number(value[0]) || 0);
+  const height = Math.round(Number(value[1]) || 0);
+  return width >= 180 && height >= 180 ? [width, height] : null;
+}
+
+function restoreConfiguredNodeSize(node, configured) {
+  const saved = normalizeNodeSize(configured?.properties?.[NODE_SIZE_PROP]) ||
+    normalizeNodeSize(node?.properties?.[NODE_SIZE_PROP]) ||
+    normalizeNodeSize(configured?.size);
+  if (!saved) return;
+  requestAnimationFrame(() => node?.setSize?.(saved));
+}
+
 function savePreviewHeight(node, preview) {
-  const height = Math.round(preview?.getBoundingClientRect?.().height || 0);
+  const height = Math.round(preview?.offsetHeight || parseFloat(preview?.style?.height || "0") || 0);
   if (!height) return;
   const clamped = Math.max(PREVIEW_MIN_HEIGHT, Math.min(PREVIEW_MAX_HEIGHT, height));
   if (!node.properties) node.properties = {};
@@ -190,27 +232,14 @@ function attachPreviewResizePersistence(node, preview) {
   node.__k2pgRestorePreviewHeight = restore;
 
   let resizing = false;
-  let resizeStartPreviewHeight = 0;
-  let resizeStartNodeHeight = 0;
   const onPointerDown = (event) => {
     const rect = preview.getBoundingClientRect();
     resizing = event.clientX >= rect.right - 20 && event.clientY >= rect.bottom - 20;
-    if (resizing) {
-      resizeStartPreviewHeight = rect.height;
-      resizeStartNodeHeight = Number(node.size?.[1]) || 0;
-    }
   };
   const onPointerUp = () => {
     if (resizing) {
       requestAnimationFrame(() => {
-        const currentPreviewHeight = preview.getBoundingClientRect().height;
-        const delta = currentPreviewHeight - resizeStartPreviewHeight;
         savePreviewHeight(node, preview);
-        if (resizeStartNodeHeight > 0 && Math.abs(delta) >= 1) {
-          const width = Number(node.size?.[0]) || 320;
-          node.setSize?.([width, Math.max(120, Math.round(resizeStartNodeHeight + delta))]);
-          app.graph?.setDirtyCanvas?.(true, true);
-        }
       });
     }
     resizing = false;
@@ -334,9 +363,14 @@ function applyStrength(text, strength) {
 function buildPreview(node, displayMaps) {
   if (widgetValue(node, "enable_pose_preset", true) === false) return "Pose preset disabled.";
 
-  const sittingLyingSelected = clean(widgetValue(node, "sitting_lying_preset", NONE_OPTION));
+  const lyingSelected = clean(widgetValue(node, "lying_preset", NONE_OPTION));
+  const sittingSelected = clean(widgetValue(node, "sitting_preset", NONE_OPTION));
+  const legacySelected = clean(widgetValue(node, "sitting_lying_preset", NONE_OPTION));
+  const bodyPoseField = hasPresetValue(lyingSelected)
+    ? "lying_preset"
+    : (hasPresetValue(sittingSelected) ? "sitting_preset" : (hasPresetValue(legacySelected) ? "sitting_lying_preset" : null));
   const skipNames = new Set();
-  if (sittingLyingSelected && sittingLyingSelected !== NONE_OPTION) {
+  if (bodyPoseField) {
     skipNames.add("base_pose_preset");
     skipNames.add("lower_body_preset");
   }
@@ -350,10 +384,10 @@ function buildPreview(node, displayMaps) {
     ["gaze_preset", null],
     ["head_preset", null],
     ["lower_body_preset", null],
-    ["sitting_lying_preset", null],
+    [bodyPoseField, null],
     ["performance_preset", null],
     ["pair_preset", null],
-  ];
+  ].filter(([name]) => name);
   const parts = [];
   const selected = [];
   for (const [name, side] of ordered) {
@@ -404,7 +438,7 @@ function ensureStyle() {
   const style = document.createElement("style");
   style.id = "k2pg-live-preview-style";
   style.textContent = `
-    .k2pg-accordion{box-sizing:border-box;padding:4px 8px 6px;color:#ddd;font:11px sans-serif}
+    .k2pg-accordion{box-sizing:border-box;height:100%;min-height:0;overflow-y:auto;padding:4px 8px 6px;color:#ddd;font:11px sans-serif;cursor:grab}
     .k2pg-section{margin:0 0 5px;border:1px solid #424242;border-radius:6px;background:#181818;overflow:hidden}
     .k2pg-section>summary{display:flex;align-items:center;gap:6px;padding:7px 8px;cursor:pointer;color:#eee;font-weight:700;user-select:none;list-style:none}
     .k2pg-section>summary::-webkit-details-marker{display:none}
@@ -412,16 +446,111 @@ function ensureStyle() {
     .k2pg-section[open]>summary::before{content:"▼";color:#35d0c8}
     .k2pg-section-count{margin-left:auto;min-width:17px;padding:1px 5px;border-radius:9px;background:#303030;color:#aaa;text-align:center;font-size:10px}
     .k2pg-section-count.active{background:#164846;color:#65eee7}
-    .k2pg-section-body{display:grid;gap:5px;padding:2px 7px 8px;border-top:1px solid #303030}
+    .k2pg-section-body{display:grid;gap:5px;padding:2px 7px 8px;border-top:1px solid #303030;cursor:grab}
     .k2pg-field{display:grid;grid-template-columns:minmax(96px,42%) minmax(0,1fr);align-items:center;gap:7px;min-height:25px}
     .k2pg-field-label{color:#bbb;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .k2pg-field select{box-sizing:border-box;width:100%;min-width:0;height:25px;border:1px solid #4a4a4a;border-radius:5px;background:#222;color:#eee;padding:2px 5px;font:11px sans-serif}
-    .k2pg-field input[type=checkbox]{justify-self:end;width:34px;height:18px;accent-color:#35d0c8}
-    .k2pg-live-wrap{box-sizing:border-box;padding:6px 8px 8px}
+    .k2pg-field input[type=checkbox]{appearance:none;position:relative;justify-self:end;box-sizing:border-box;width:36px;height:20px;margin:0;border:1px solid #555;border-radius:10px;background:#333;cursor:pointer;transition:background .12s,border-color .12s}
+    .k2pg-field input[type=checkbox]::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#bbb;transition:transform .12s,background .12s}
+    .k2pg-field input[type=checkbox]:checked{border-color:#35d0c8;background:#168c87}
+    .k2pg-field input[type=checkbox]:checked::after{transform:translateX(16px);background:#fff}
+    .k2pg-live-wrap{box-sizing:border-box;padding:6px 8px 8px;cursor:grab}
     .k2pg-live-label{color:#35d0c8;font-size:11px;font-weight:700;margin-bottom:4px}
     .k2pg-live-preview{box-sizing:border-box;width:100%;min-height:76px;max-height:240px;resize:vertical;overflow:auto;border:1px solid #444;border-radius:6px;background:#151515;color:#ddd;padding:7px;font:11px monospace;white-space:pre-wrap;user-select:text}
+    .k2pg-section summary,.k2pg-field input,.k2pg-field select,.k2pg-live-preview{cursor:auto}
   `;
   document.head.appendChild(style);
+}
+
+function graphCanvasElement() {
+  return app?.canvas?.canvas || window.comfyAPI?.app?.app?.canvas?.canvas || null;
+}
+
+function isGraphNavigationControl(target) {
+  return Boolean(target?.closest?.("input, textarea, select, button, option, summary, [contenteditable='true']"));
+}
+
+function forwardWheelToGraph(event) {
+  if (isGraphNavigationControl(event.target)) return;
+  const canvas = graphCanvasElement();
+  if (!canvas) return;
+  event.preventDefault();
+  event.stopPropagation();
+  canvas.dispatchEvent(new WheelEvent("wheel", {
+    bubbles: true,
+    cancelable: true,
+    view: window,
+    deltaX: event.deltaX,
+    deltaY: event.deltaY,
+    deltaZ: event.deltaZ,
+    deltaMode: event.deltaMode,
+    clientX: event.clientX,
+    clientY: event.clientY,
+    screenX: event.screenX,
+    screenY: event.screenY,
+    ctrlKey: event.ctrlKey,
+    shiftKey: event.shiftKey,
+    altKey: event.altKey,
+    metaKey: event.metaKey,
+  }));
+}
+
+function panGraphBy(dx, dy) {
+  const graphCanvas = app?.canvas || window.comfyAPI?.app?.app?.canvas;
+  const ds = graphCanvas?.ds;
+  if (!ds?.offset) return false;
+  const scale = Number(ds.scale) || 1;
+  ds.offset[0] += dx / scale;
+  ds.offset[1] += dy / scale;
+  graphCanvas.setDirty?.(true, true);
+  graphCanvas.draw?.(true, true);
+  return true;
+}
+
+function attachGraphNavigation(element) {
+  if (!element) return () => {};
+  const onWheel = (event) => forwardWheelToGraph(event);
+  const onPointerDown = (event) => {
+    if (event.button !== 1 || isGraphNavigationControl(event.target)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    let lastX = event.clientX;
+    let lastY = event.clientY;
+    document.body.style.cursor = "grabbing";
+    const onMove = (moveEvent) => {
+      moveEvent.preventDefault();
+      moveEvent.stopPropagation();
+      const dx = moveEvent.clientX - lastX;
+      const dy = moveEvent.clientY - lastY;
+      lastX = moveEvent.clientX;
+      lastY = moveEvent.clientY;
+      panGraphBy(dx, dy);
+    };
+    const onUp = (upEvent) => {
+      upEvent.preventDefault();
+      upEvent.stopPropagation();
+      document.body.style.cursor = "";
+      window.removeEventListener("pointermove", onMove, true);
+      window.removeEventListener("pointerup", onUp, true);
+      window.removeEventListener("pointercancel", onUp, true);
+    };
+    window.addEventListener("pointermove", onMove, true);
+    window.addEventListener("pointerup", onUp, true);
+    window.addEventListener("pointercancel", onUp, true);
+  };
+  const onAuxClick = (event) => {
+    if (event.button !== 1 || isGraphNavigationControl(event.target)) return;
+    event.preventDefault();
+    event.stopPropagation();
+  };
+  element.addEventListener("wheel", onWheel, { passive: false, capture: true });
+  element.addEventListener("pointerdown", onPointerDown, true);
+  element.addEventListener("auxclick", onAuxClick, true);
+  return () => {
+    element.removeEventListener("wheel", onWheel, true);
+    element.removeEventListener("pointerdown", onPointerDown, true);
+    element.removeEventListener("auxclick", onAuxClick, true);
+  };
 }
 
 function attachAccordion(node) {
@@ -429,16 +558,20 @@ function attachAccordion(node) {
   node.__k2pgAccordionAttached = true;
   ensureStyle();
 
-  const fieldNames = ACCORDION_SECTIONS.flatMap((section) => section.fields.map(([name]) => name));
+  const fieldNames = [
+    ...ACCORDION_SECTIONS.flatMap((section) => section.fields.map(([name]) => name)),
+    ...LEGACY_HIDDEN_FIELDS,
+  ];
   const nativeWidgets = fieldNames.map((name) => widget(node, name)).filter(Boolean);
   for (const w of nativeWidgets) hideNativeWidget(w);
+  migrateLegacyPoseSelection(node);
 
   const wrap = document.createElement("div");
   wrap.className = "k2pg-accordion";
+  const cleanupGraphNavigation = attachGraphNavigation(wrap);
   const controls = new Map();
   const sections = new Map();
   const state = accordionState(node);
-  let lastAccordionHeight = 0;
 
   const updateCounts = () => {
     for (const section of ACCORDION_SECTIONS) {
@@ -505,6 +638,12 @@ function attachAccordion(node) {
         control.value = String(w.value ?? "");
         control.addEventListener("change", () => {
           setWidgetValue(node, name, control.value);
+          if (hasPresetValue(control.value) && ["sitting_preset", "lying_preset"].includes(name)) {
+            const otherName = name === "sitting_preset" ? "lying_preset" : "sitting_preset";
+            setWidgetValue(node, otherName, NONE_OPTION);
+            setWidgetValue(node, "sitting_lying_preset", NONE_OPTION);
+            sync();
+          }
           updateCounts();
         });
       }
@@ -519,16 +658,6 @@ function attachAccordion(node) {
       if (currentState[section.id] === details.open) return;
       currentState[section.id] = details.open;
       app.graph?.setDirtyCanvas?.(true, true);
-      requestAnimationFrame(() => {
-        const currentHeight = wrap.scrollHeight;
-        const delta = lastAccordionHeight > 0 ? currentHeight - lastAccordionHeight : 0;
-        lastAccordionHeight = currentHeight;
-        if (Math.abs(delta) >= 1) {
-          const width = Number(node.size?.[0]) || 320;
-          const height = Number(node.size?.[1]) || 300;
-          node.setSize?.([width, Math.max(180, Math.round(height + delta))]);
-        }
-      });
     });
     sections.set(section.id, { details, count });
     wrap.appendChild(details);
@@ -537,13 +666,11 @@ function attachAccordion(node) {
   node.addDOMWidget("krea2_pose_accordion", "Krea2PoseAccordion", wrap, {
     serialize: false,
     hideOnZoom: false,
-    getMinHeight: () => wrap.scrollHeight + 8,
-  });
-  requestAnimationFrame(() => {
-    lastAccordionHeight = wrap.scrollHeight;
+    getMinHeight: () => 180,
   });
   node.__k2pgSyncAccordion = sync;
   node.__k2pgCleanupAccordion = () => {
+    cleanupGraphNavigation();
     for (const w of nativeWidgets) restoreNativeWidget(w);
     delete node.__k2pgSyncAccordion;
     delete node.__k2pgCleanupAccordion;
@@ -559,6 +686,7 @@ function attachPreview(node, displayMaps) {
 
   const wrap = document.createElement("div");
   wrap.className = "k2pg-live-wrap";
+  const cleanupGraphNavigation = attachGraphNavigation(wrap);
   const label = document.createElement("div");
   label.className = "k2pg-live-label";
   label.textContent = "Prompt Preview";
@@ -569,10 +697,13 @@ function attachPreview(node, displayMaps) {
   attachPreviewResizePersistence(node, preview);
   wrap.append(label, preview);
 
+  const getPreviewHeight = () => previewHeight(node) + 34;
   node.addDOMWidget("krea2_pose_prompt_preview", "Krea2PosePromptPreview", wrap, {
     serialize: false,
     hideOnZoom: false,
-    getMinHeight: () => previewHeight(node) + 34,
+    getMinHeight: getPreviewHeight,
+    getMaxHeight: getPreviewHeight,
+    getHeight: getPreviewHeight,
   });
 
   const update = () => {
@@ -597,6 +728,7 @@ function attachPreview(node, displayMaps) {
     });
   }
   node.__k2pgCleanupLivePreview = () => {
+    cleanupGraphNavigation();
     node.__k2pgCleanupPreviewResize?.();
     for (const restore of callbackRestorers) restore();
     delete node.__k2pgCleanupPreviewResize;
@@ -619,17 +751,37 @@ app.registerExtension({
       oldCreated?.apply(this, arguments);
       attachAccordion(this);
       fetchPresets().then((payload) => attachPreview(this, buildDisplayMaps(payload)));
+      requestAnimationFrame(() => {
+        if (!this.__k2pgConfigured && !normalizeNodeSize(this.properties?.[NODE_SIZE_PROP])) {
+          this.setSize?.(DEFAULT_NODE_SIZE.slice());
+        }
+      });
     };
     const oldConfigure = nodeType.prototype.onConfigure;
     nodeType.prototype.onConfigure = function () {
       const result = oldConfigure?.apply(this, arguments);
+      this.__k2pgConfigured = true;
+      restoreConfiguredNodeSize(this, arguments[0]);
       if (!this.__k2pgAccordionAttached) attachAccordion(this);
+      migrateLegacyPoseSelection(this);
       this.__k2pgSyncAccordion?.();
       fetchPresets().then((payload) => {
         if (!this.__k2pgLivePreviewAttached) attachPreview(this, buildDisplayMaps(payload));
         this.__k2pgRestorePreviewHeight?.();
         this.__k2pgUpdatePreview?.();
       });
+      return result;
+    };
+    const oldSerialize = nodeType.prototype.onSerialize;
+    nodeType.prototype.onSerialize = function (data) {
+      const result = oldSerialize?.apply(this, arguments);
+      const size = normalizeNodeSize(this.size);
+      if (size) {
+        this.properties = this.properties || {};
+        this.properties[NODE_SIZE_PROP] = size.slice();
+        data.properties = data.properties || {};
+        data.properties[NODE_SIZE_PROP] = size.slice();
+      }
       return result;
     };
     const oldRemoved = nodeType.prototype.onRemoved;
