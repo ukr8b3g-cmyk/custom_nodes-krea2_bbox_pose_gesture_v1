@@ -7,6 +7,7 @@ Krea2 BBOX Prompter Suite向けの、ポーズ補助ノードです。BBOX Promp
 ## 更新内容
 - 2026-07-12: アコーディオン開閉時の自動リサイズを廃止し、固定レイアウトと内部スクロールでノードサイズが勝手に伸びないようにしました。
 - 新規ノードは5セクションを開いた状態で表示し、Enableをトグル表示に変更しました。ユーザーが変更したノードサイズと `Prompt Preview` の高さはワークフローに保存されます。
+- マイク、スマートフォン、マグカップなど、左右の手に指定できる日常の手持ち動作10種を追加しました。
 - 2026-07-11: 操作項目を身体の流れに沿った5段の折りたたみUIへ整理し、座りと寝そべりを独立した選択欄へ分けました。
 - `Prompt Preview` の高さ保存とプリセット読込の再試行を追加しました。
 - ピンアップ・モデル系を含む寝そべりプリセットを合計10種追加しました。
@@ -117,7 +118,7 @@ README上で確認しやすいように、プリセット名だけを掲載し�
 - One Hand on Opposite Elbow / 反対の肘に手
 - Hands in Pockets / 両手をポケット
 
-### Right / Left Hand Preset (51)
+### Right / Left Hand Preset (61)
 - Peace Sign / ピース
 - OK Sign / OKサイン
 - Thumbs Up / 親指立て
@@ -169,6 +170,16 @@ README上で確認しやすいように、プリセット名だけを掲載し�
 - Hand in Pocket / ポケットに手
 - Heavy Carry / 重い荷物を持つ
 - Heavy Bag Side / 重いバッグを横に持つ
+- Holding Microphone / マイクを持つ
+- Holding Smartphone / スマートフォンを持つ
+- Holding Mug / マグカップを持つ
+- Holding Bottle / ボトルを持つ
+- Holding Book / 本を持つ
+- Holding Pen / ペンを持つ
+- Holding Keys / 鍵を持つ
+- Holding Umbrella / 傘を持つ
+- Holding Shopping Bag / 買い物袋を持つ
+- Holding Remote / リモコンを持つ
 
 ### Torso Preset (13)
 - Torso Twist / 上半身をひねる

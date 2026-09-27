@@ -61,6 +61,19 @@ def test_sign_presets_are_in_expected_categories():
     for preset_id in ["t_sign_body", "y_sign_body", "x_sign_body", "o_sign_body"]:
         assert preset_label("performance", preset_id)
 
+def test_handheld_object_presets_reach_both_hands_and_output():
+    node=Krea2BBOXPoseGestureInjectorV1()
+    preset_ids=["holding_microphone","holding_smartphone","holding_mug","holding_bottle","holding_book","holding_pen","holding_keys","holding_umbrella_handle","holding_shopping_bag","holding_remote"]
+    for preset_id in preset_ids:
+        right=preset_label("right_hand",preset_id)
+        left=preset_label("left_hand",preset_id)
+        out,pose,debug=call(node,sample_data(),right_hand_preset=right)
+        assert "right hand" in pose
+        assert pose in json.loads(out)["slots"]["red"]["prompt"]
+        out,pose,debug=call(node,sample_data(),left_hand_preset=left)
+        assert "left hand" in pose
+        assert pose in json.loads(out)["slots"]["red"]["prompt"]
+
 def test_torso_and_lower_body_recent_presets():
     for preset_id in ["deep_forward_bend", "deep_back_arch", "strong_torso_twist", "right_side_lean", "left_side_lean"]:
         assert preset_label("torso", preset_id)
@@ -114,7 +127,7 @@ def test_all_split_pose_presets_reach_final_output():
             assert pose in json.loads(out)["slots"]["red"]["prompt"]
 
 if __name__ == "__main__":
-    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); test_torso_and_lower_body_recent_presets(); test_pinup_presets_are_in_performance(); test_new_lying_presets_generate_prompt_text(); test_split_pose_categories_and_legacy_compatibility(); test_all_split_pose_presets_reach_final_output(); print("ok")
+    test_combine_multiple_channels(); test_sitting_overrides_base_and_lower_body(); test_right_left_both_can_combine(); test_explicit_slot_always_applies(); test_all_categories_have_options(); test_sign_presets_are_in_expected_categories(); test_handheld_object_presets_reach_both_hands_and_output(); test_torso_and_lower_body_recent_presets(); test_pinup_presets_are_in_performance(); test_new_lying_presets_generate_prompt_text(); test_split_pose_categories_and_legacy_compatibility(); test_all_split_pose_presets_reach_final_output(); print("ok")
 
 
 def test_custom_auto_is_ignored():
