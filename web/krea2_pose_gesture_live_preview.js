@@ -207,9 +207,9 @@ function normalizeNodeSize(value) {
 }
 
 function restoreConfiguredNodeSize(node, configured) {
-  const saved = normalizeNodeSize(configured?.properties?.[NODE_SIZE_PROP]) ||
-    normalizeNodeSize(node?.properties?.[NODE_SIZE_PROP]) ||
-    normalizeNodeSize(configured?.size);
+  const saved = normalizeNodeSize(configured?.size) ||
+    normalizeNodeSize(configured?.properties?.[NODE_SIZE_PROP]) ||
+    normalizeNodeSize(node?.properties?.[NODE_SIZE_PROP]);
   if (!saved) return;
   requestAnimationFrame(() => node?.setSize?.(saved));
 }
@@ -666,6 +666,7 @@ function attachAccordion(node) {
   node.addDOMWidget("krea2_pose_accordion", "Krea2PoseAccordion", wrap, {
     serialize: false,
     hideOnZoom: false,
+    hideInPanel: true,
     getMinHeight: () => 180,
   });
   node.__k2pgSyncAccordion = sync;
@@ -701,6 +702,7 @@ function attachPreview(node, displayMaps) {
   node.addDOMWidget("krea2_pose_prompt_preview", "Krea2PosePromptPreview", wrap, {
     serialize: false,
     hideOnZoom: false,
+    hideInPanel: true,
     getMinHeight: getPreviewHeight,
     getMaxHeight: getPreviewHeight,
     getHeight: getPreviewHeight,
@@ -776,11 +778,8 @@ app.registerExtension({
     nodeType.prototype.onSerialize = function (data) {
       const result = oldSerialize?.apply(this, arguments);
       const size = normalizeNodeSize(this.size);
-      if (size) {
-        this.properties = this.properties || {};
-        this.properties[NODE_SIZE_PROP] = size.slice();
-        data.properties = data.properties || {};
-        data.properties[NODE_SIZE_PROP] = size.slice();
+      if (size && data) {
+        data.properties = { ...data.properties, [NODE_SIZE_PROP]: size.slice() };
       }
       return result;
     };
