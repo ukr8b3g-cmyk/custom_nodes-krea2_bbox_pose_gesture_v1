@@ -425,3 +425,9 @@ README上で確認しやすいように、プリセット名だけを掲載し�
 2. このフォルダを `ComfyUI/custom_nodes/` に入れます。
 3. ComfyUIを再起動します。
 4. ブラウザを `Ctrl + F5` で更新します。
+
+## ライセンス / License
+
+作者のコード・文書・ポーズ／ジェスチャープリセットは [MIT License](LICENSE) です。Forge Neo版が取得する旧コミット `914b3f95676f29d8e76dc103f2f39c252dc1e82d` の本人作成プリセットも対象です。適用範囲と既存の第三者権利は [NOTICE.md](NOTICE.md) を参照してください。
+
+The maintainer-authored code, documentation, and preset data are MIT-licensed, including the historical preset snapshot identified in [NOTICE.md](NOTICE.md).
